@@ -1,0 +1,205 @@
+/* ===================================================
+   On Demand Dental — Global Styles
+   Palette: light lavender grey, lavender, mountain sage
+   Mobile-first
+   =================================================== */
+
+:root{
+  --lavender-bg:#EFEDF4;
+  --lavender:#C9C4DA;
+  --lavender-deep:#7B6FA8;
+  --sage:#63795B;      /* darkened for readable white text */
+  --sage-dark:#4C5F45;
+  --sage-light:#E8EDE5;
+  --ink:#3A3F44;
+  --gray:#6B7076;
+  --white:#FFFFFF;
+  --radius:10px;
+  --shadow:0 8px 24px rgba(58,63,68,.10);
+  --font-serif:Georgia,'Times New Roman',serif;
+  --font-sans:'Segoe UI',system-ui,-apple-system,sans-serif;
+}
+
+/* ---------- Reset & base ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  color:var(--ink);
+  background:var(--white);
+  line-height:1.7;
+  font-size:1.02rem;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-serif);font-weight:600;line-height:1.25;letter-spacing:.01em}
+h1{font-size:clamp(2rem,5vw,3.1rem)}
+h2{font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:.6em}
+h3{font-size:1.2rem;margin-bottom:.4em}
+p{margin-bottom:1em}
+.muted{color:var(--gray)}
+
+.container{max-width:1100px;margin:0 auto;padding:0 22px}
+section{padding:64px 0}
+@media(min-width:820px){section{padding:84px 0}}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-block;
+  background:var(--sage);
+  color:var(--white);
+  padding:14px 32px;
+  border-radius:8px;
+  font-family:var(--font-sans);
+  font-weight:600;
+  font-size:1rem;
+  border:none;
+  cursor:pointer;
+  transition:background .2s,transform .15s;
+  text-align:center;
+  min-height:48px; /* large tap target */
+}
+.btn:hover{background:var(--sage-dark);transform:translateY(-1px)}
+.btn-outline{
+  background:transparent;
+  color:var(--lavender-deep);
+  border:2px solid var(--lavender);
+}
+.btn-outline:hover{background:var(--lavender-bg);color:var(--lavender-deep);transform:none}
+.btn-sm{padding:10px 22px;font-size:.93rem;min-height:44px}
+
+/* ---------- Header / Navigation ---------- */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--white);
+  box-shadow:0 1px 8px rgba(58,63,68,.08);
+}
+/* Header spans the full browser width instead of being capped at 1100px,
+   so the logo and buttons sit at the true edges on wide screens */
+.site-header .container{max-width:none;padding:0 clamp(20px,4vw,56px)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:16px}
+.brand{flex-shrink:0}
+.brand img{height:80px;width:auto}
+.nav-toggle{
+  display:block;background:none;border:none;cursor:pointer;
+  font-size:1.7rem;color:var(--lavender-deep);padding:8px 12px;line-height:1;
+}
+.nav-links{
+  display:none;
+  position:absolute;top:100%;left:0;right:0;
+  background:var(--white);
+  flex-direction:column;
+  padding:14px 22px 22px;
+  box-shadow:0 12px 24px rgba(58,63,68,.12);
+  gap:6px;
+}
+.nav-links.open{display:flex}
+.nav-links a{
+  padding:13px 10px;
+  font-weight:500;color:var(--gray);
+  border-radius:6px;
+  min-height:48px;display:flex;align-items:center;justify-content:center;
+}
+.nav-links a:hover{background:var(--lavender-bg);color:var(--ink)}
+.nav-links a.active{color:var(--sage-dark);font-weight:700}
+/* Buttons inside nav must keep their own colors (override .nav-links a) */
+.nav-links a.btn{background:var(--sage);color:var(--white);font-weight:600}
+.nav-links a.btn:hover{background:var(--sage-dark);color:var(--white)}
+.nav-links a.btn-outline{background:transparent;color:var(--lavender-deep);border:2px solid var(--lavender)}
+.nav-links a.btn-outline:hover{background:var(--lavender-bg);color:var(--lavender-deep)}
+.nav-links .btn,.nav-links .btn-outline{justify-content:center;margin-top:4px}
+
+/* Persistent CTA in header bar when nav is collapsed */
+.header-lang{margin-left:auto}
+.header-cta{margin-left:0}
+@media(max-width:919px){
+  /* Fluid sizing: logo, buttons, and menu icon all scale down together as
+     the viewport narrows, so everything stays on one row regardless of
+     EN/ES text length instead of a fixed size that only fits some phones */
+  .nav{flex-wrap:wrap;row-gap:8px;gap:clamp(4px,2vw,10px)}
+  .brand img{height:clamp(42px,12vw,54px)}
+  .header-lang{padding:clamp(6px,1.6vw,8px) clamp(8px,2.6vw,12px);font-size:clamp(.68rem,3.2vw,.82rem);min-height:auto}
+  .header-cta{white-space:nowrap;padding:clamp(6px,1.6vw,8px) clamp(10px,3vw,14px);font-size:clamp(.68rem,3.2vw,.82rem);min-height:auto}
+  .nav-toggle{font-size:clamp(1.2rem,4vw,1.5rem);padding:clamp(5px,1.4vw,7px) clamp(6px,2vw,10px)}
+}
+
+@media(min-width:920px){
+  .nav-toggle{display:none}
+  .header-cta{display:none}
+  .header-lang{display:none}
+  .nav-links{
+    display:flex;position:static;flex-direction:row;align-items:center;
+    background:none;box-shadow:none;padding:0;gap:6px;
+  }
+  .nav-links a{padding:10px 14px;min-height:auto}
+  .nav-links .btn,.nav-links .btn-outline{margin-top:0;margin-left:8px}
+}
+
+/* ---------- Page hero (inner pages) ---------- */
+.page-hero{
+  background:var(--lavender-deep);
+  color:var(--white);
+  text-align:center;
+  padding:34px 0 30px;
+}
+.page-hero p{max-width:640px;margin:12px auto 0;color:rgba(255,255,255,.92);font-size:1.1rem}
+
+/* ---------- CTA band ---------- */
+.cta-band{
+  background:var(--lavender-bg);
+  text-align:center;
+}
+.cta-band p{max-width:560px;margin:0 auto 26px;color:var(--gray)}
+
+/* ---------- Footer ---------- */
+.site-footer{
+  background:var(--ink);
+  color:#CFD3D7;
+  padding:52px 0 36px;
+  font-size:.95rem;
+}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:720px){.footer-grid{grid-template-columns:1fr 1fr 1fr}}
+.site-footer h4{color:var(--white);font-family:var(--font-sans);font-size:1rem;margin-bottom:10px}
+.site-footer a:hover{color:var(--white);text-decoration:underline}
+.footer-lang{font-family:var(--font-serif);font-size:1.25rem;color:var(--lavender)}
+.contact-line{display:inline-flex;align-items:center;gap:7px;color:inherit}
+.contact-line .contact-icon{width:15px;height:15px;flex-shrink:0}
+.ig-icon-link{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.08);color:inherit;margin-top:4px}
+.ig-icon-link:hover{background:rgba(255,255,255,.18);text-decoration:none !important}
+.ig-icon-link svg{width:17px;height:17px}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.15);
+  margin-top:36px;padding-top:20px;
+  text-align:center;color:#9FA6AD;font-size:.87rem;
+}
+
+/* ---------- Floating phone button ---------- */
+.phone-fab{
+  position:fixed;bottom:22px;right:22px;z-index:200;
+  width:58px;height:58px;border-radius:50%;
+  background:var(--sage);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(95,113,97,.45);
+  transition:background .2s,transform .15s;
+}
+.phone-fab:hover{background:var(--sage-dark);transform:scale(1.06)}
+.phone-fab svg{width:26px;height:26px;fill:var(--white)}
+
+/* ---------- Utilities ---------- */
+.split{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
+@media(min-width:820px){.split{grid-template-columns:1fr 1fr;gap:56px}}
+.rounded-img{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;object-fit:cover}
+.img-placeholder{
+  border-radius:var(--radius);background:var(--lavender);
+  color:var(--white);display:flex;align-items:center;justify-content:center;
+  min-height:300px;font-family:var(--font-sans);
+}
+.eyebrow{
+  font-family:var(--font-sans);
+  color:var(--sage-dark);font-weight:700;
+  text-transform:uppercase;letter-spacing:.09em;font-size:.82rem;
+  display:block;margin-bottom:10px;
+}
+.center{text-align:center}

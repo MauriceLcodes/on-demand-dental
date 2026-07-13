@@ -1,0 +1,18 @@
+/* About page styles */
+.narrow{max-width:800px}
+.narrow p{color:var(--gray)}
+.alt-bg{background:var(--sage-light)}
+.portrait{max-height:520px;object-fit:cover;object-position:top}
+.img-placeholder.portrait{min-height:420px}
+
+/* Gloria bio section — white background, matches the purple/white/green
+   pattern used on the rest of the site (page-hero above is purple) */
+.bio-section{background:var(--white)}
+.bio-section .eyebrow{color:var(--sage-dark)}
+.bio-section h2{color:var(--ink)}
+.bio-section p{color:var(--gray)}
+
+/* No headshot yet — use the full section width so there's no empty gap.
+   Switch this section back to "container split" and un-comment the <img>
+   once Gloria's headshot is ready. */
+.narrow-wide{max-width:900px}

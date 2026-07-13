@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservar Cita | On Demand Dental — Visitas en Oficina y Móviles</title>
+<meta name="description" content="Solicite una cita de higiene dental en nuestra oficina de Woodland Hills o programe una visita móvil a domicilio o en un centro de cuidado. Llame al 818-821-5065 o reserve en línea.">
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/book.css">
+<link rel="icon" type="image/png" href="../images/logo.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand" aria-label="Inicio de On Demand Dental">
+      <img src="../images/logo.png" alt="Logotipo de On Demand Dental, diente morado con cepillo de dientes">
+    </a>
+    <a href="../book.html" class="btn btn-outline btn-sm header-lang" lang="en">English</a>
+    <a href="book.html" class="btn btn-sm header-cta">Reservar Cita</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="services.html">Servicios</a>
+      <a href="mobile-care.html">Cuidado Móvil</a>
+      <a href="about.html">Nosotros</a>
+      <a href="../book.html" class="btn btn-outline btn-sm" lang="en">English</a>
+      <a href="book.html" class="btn btn-sm">Reservar Cita</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Reservar Cita</h1>
+      <p>Solicite una visita y nos comunicaremos para confirmar un horario que le funcione.</p>
+    </div>
+  </section>
+
+  <section class="book-section">
+    <div class="container book-grid">
+
+      <div class="book-info">
+        <h2>Opciones de Visita</h2>
+        <div class="visit-option">
+          <h3>Visita en Oficina</h3>
+          <p>Venga a nuestra oficina tranquila y cómoda en Woodland Hills.</p>
+        </div>
+        <div class="visit-option">
+          <h3>Visita Móvil</h3>
+          <p>Vamos hasta usted, a domicilio, en residencias asistidas o en centros de enfermería especializada.</p>
+        </div>
+
+        <h2 style="margin-top:36px">Contacto</h2>
+        <address style="font-style:normal">
+          <p>📍 <a href="https://maps.google.com/?q=6200+Variel+Ave+Suite+1A+Unit+121+Woodland+Hills+CA+91367" target="_blank" rel="noopener" class="text-link">6200 Variel Ave Suite 1A, Unit 121<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Woodland Hills, CA 91367</a></p>
+          <p>📞 <a href="tel:+18188215065" class="text-link">818-821-5065</a></p>
+          <p>✉️ <a href="mailto:ondemanddental@gmail.com" class="text-link">ondemanddental@gmail.com</a></p>
+          <p>🕒 Solo con cita previa</p>
+        </address>
+        <p class="lang-note">Se habla español</p>
+
+        <iframe
+          class="map"
+          title="Mapa a On Demand Dental, 6200 Variel Ave, Woodland Hills"
+          src="https://www.google.com/maps?q=6200+Variel+Ave+Suite+1A,+Woodland+Hills,+CA+91367&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <form name="appointment" method="POST" action="/es/gracias.html" data-netlify="true" netlify-honeypot="bot-field" class="book-form">
+        <h2>Solicitar una Cita</h2>
+        <input type="hidden" name="form-name" value="appointment">
+        <input type="hidden" name="language" value="Español">
+        <p class="hp"><label>No llene este campo: <input name="bot-field"></label></p>
+        <div class="field">
+          <label for="name">Nombre Completo</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="phone">Teléfono</label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="visit_type">Tipo de Visita</label>
+          <select id="visit_type" name="visit_type">
+            <option>Visita en Oficina (Woodland Hills)</option>
+            <option>Visita Móvil — Domicilio</option>
+            <option>Visita Móvil — Residencia Asistida / Enfermería Especializada</option>
+            <option>No estoy seguro/a todavía</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="notes">Notas (opcional)</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Días/horarios preferidos, necesidades del paciente, preguntas…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-full">Enviar Solicitud</button>
+        <p class="form-note"><strong>Aviso de Privacidad:</strong> por favor no incluya información médica sensible, detalles de seguro, ni información de salud confidencial en este formulario. Está pensado solo para solicitudes de cita. Si necesita hablar sobre su historial dental o médico, llame a nuestra oficina al 818-821-5065. Nunca compartiremos su información. <a href="privacidad.html" style="color:var(--sage-dark)">Privacidad</a></p>
+      </form>
+
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container narrow">
+      <h2>Preguntas Frecuentes</h2>
+
+      <details>
+        <summary>¿Qué tan pronto recibiré respuesta después de enviar una solicitud?</summary>
+        <p>Respondemos a las solicitudes de cita dentro de un día hábil, generalmente mucho antes. Si es urgente, llámenos al 818-821-5065.</p>
+      </details>
+
+      <details>
+        <summary>¿Puedo solicitar una visita móvil para un familiar?</summary>
+        <p>Sí. Familiares y coordinadores de centros solicitan visitas regularmente en nombre de un paciente. Solo incluya los detalles en el campo de notas.</p>
+      </details>
+
+      <details>
+        <summary>¿Qué áreas cubren para las visitas móviles?</summary>
+        <p>Servimos Woodland Hills y las comunidades cercanas del Valle de San Fernando. Contáctenos si no está seguro de que su ubicación esté cubierta.</p>
+      </details>
+
+      <details>
+        <summary>¿Cuánto dura una visita?</summary>
+        <p>La duración de la cita varía según sus necesidades individuales. Ya sea que nos visite en nuestra oficina de Woodland Hills o reciba atención móvil, le proporcionaremos un tiempo estimado más preciso al confirmar su cita.</p>
+      </details>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h4>On Demand Dental</h4>
+      <address style="font-style:normal">
+        <a href="https://maps.google.com/?q=6200+Variel+Ave+Suite+1A+Unit+121+Woodland+Hills+CA+91367" target="_blank" rel="noopener">
+          6200 Variel Ave<br>
+          Suite 1A, Unit 121<br>
+          Woodland Hills, CA 91367
+        </a>
+      </address>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <a href="tel:+18188215065" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 818-821-5065</a><br>
+      <a href="mailto:ondemanddental@gmail.com" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> ondemanddental@gmail.com</a><br>
+      <a href="https://www.instagram.com/ondemanddental_/" target="_blank" rel="noopener" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> ondemanddental_</a><br>
+      <a href="book.html">Solo con cita previa</a>
+    </div>
+    <div>
+      <h4>Se habla español</h4>
+      <a href="../book.html" lang="en">View site in English</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">© 2026 On Demand Dental. Todos los derechos reservados. · <a href="privacidad.html">Privacidad</a></div>
+</footer>
+
+<a href="tel:+18188215065" class="phone-fab" aria-label="Llamar a On Demand Dental al 818-821-5065">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>
+</a>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

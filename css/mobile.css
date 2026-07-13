@@ -1,0 +1,36 @@
+/* Mobile Care page styles */
+.narrow{max-width:800px}
+.narrow p{color:var(--gray)}
+.alt-bg{background:var(--sage-light)}
+
+.who-grid{
+  display:grid;grid-template-columns:1fr;gap:18px;margin-top:32px;
+}
+@media(min-width:680px){.who-grid{grid-template-columns:1fr 1fr}}
+.who-card{
+  background:var(--white);
+  border-radius:var(--radius);
+  border-left:4px solid var(--lavender-deep);
+  padding:24px 26px;
+  box-shadow:var(--shadow);
+}
+.who-card p{color:var(--gray);margin:0;font-size:.95rem}
+
+.steps{
+  list-style:none;counter-reset:step;margin-top:28px;
+}
+.steps li{
+  counter-increment:step;
+  position:relative;
+  padding:0 0 26px 62px;
+  color:var(--gray);
+}
+.steps li::before{
+  content:counter(step);
+  position:absolute;left:0;top:0;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--lavender-bg);color:var(--lavender-deep);
+  font-weight:700;font-size:1.15rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.steps strong{color:var(--ink)}

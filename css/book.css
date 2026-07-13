@@ -1,0 +1,67 @@
+/* Book Appointment page styles */
+.book-section{padding-top:56px}
+.book-grid{
+  display:grid;grid-template-columns:1fr;gap:44px;align-items:start;
+}
+@media(min-width:880px){.book-grid{grid-template-columns:1fr 1.1fr;gap:60px}}
+
+.book-info p{color:var(--gray)}
+.visit-option{
+  background:var(--sage-light);
+  border-radius:var(--radius);
+  padding:20px 24px;margin-bottom:14px;
+}
+.visit-option p{margin:0;font-size:.95rem}
+.lang-note{font-family:var(--font-serif);font-size:1.3rem;color:var(--lavender-deep)}
+.text-link{color:var(--sage-dark);font-weight:600}
+.text-link:hover{text-decoration:underline}
+.map{
+  width:100%;height:280px;border:0;border-radius:var(--radius);
+  box-shadow:var(--shadow);margin-top:18px;
+}
+
+/* Form */
+.book-form{
+  background:var(--white);
+  border-radius:var(--radius);
+  padding:32px 30px;
+  box-shadow:0 14px 34px rgba(58,63,68,.14);
+  border-top:5px solid var(--sage);
+}
+.book-form h2{font-size:1.5rem}
+.hp{display:none}
+.field{margin-bottom:16px}
+.field label{
+  display:block;font-weight:600;font-size:.9rem;margin-bottom:6px;
+}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 14px;
+  border:1.5px solid var(--lavender);
+  border-radius:8px;font-size:1rem;font-family:var(--font-sans);
+  min-height:48px;
+}
+.field textarea{min-height:90px}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--sage);
+  box-shadow:0 0 0 3px rgba(124,148,115,.15);
+}
+.btn-full{width:100%}
+.form-note{
+  text-align:center;color:var(--gray);
+  font-size:.8rem;margin:12px 0 0;
+}
+
+/* FAQs */
+.faq-section{background:var(--lavender-bg)}
+.narrow{max-width:760px}
+.faq-section details{
+  background:var(--white);
+  border-radius:var(--radius);
+  padding:18px 22px;margin-bottom:12px;
+  box-shadow:var(--shadow);
+}
+.faq-section summary{
+  cursor:pointer;font-weight:600;font-size:1.02rem;
+  min-height:32px;
+}
+.faq-section details p{color:var(--gray);margin:12px 0 0}

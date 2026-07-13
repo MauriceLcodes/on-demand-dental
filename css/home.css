@@ -1,0 +1,84 @@
+/* Home page styles */
+.hero{
+  background:var(--lavender-deep);
+  color:var(--white);
+  text-align:center;
+  padding:28px 0 24px;
+}
+.hero-logo{height:110px;width:auto;margin:0 auto 22px}
+.hero h1{letter-spacing:.05em;text-transform:uppercase}
+.hero .tagline{
+  font-size:1.15rem;color:rgba(255,255,255,.92);
+  max-width:560px;margin:10px auto 0;
+}
+.trust-badges{
+  list-style:none;
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:12px 34px;margin-top:24px;
+  color:var(--white);font-weight:600;
+}
+.trust-badges li::before{content:"✓ ";color:#BFE6B4}
+
+.alt-bg{background:var(--sage-light)}
+
+/* Keep side-by-side photos balanced with the text column */
+.split .rounded-img{max-height:440px;object-fit:cover}
+
+.services-preview{
+  display:grid;grid-template-columns:1fr;gap:18px;
+  margin:38px 0 34px;text-align:left;
+}
+@media(min-width:640px){.services-preview{grid-template-columns:1fr 1fr}}
+@media(min-width:1080px){.services-preview{grid-template-columns:repeat(4,1fr)}}
+.svc-card{
+  background:var(--white);
+  border-radius:var(--radius);
+  border-top:4px solid var(--sage);
+  padding:24px 26px;
+  box-shadow:var(--shadow);
+  transition:transform .18s,box-shadow .18s;
+}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(58,63,68,.15)}
+.svc-card p{color:var(--gray);font-size:.94rem;margin:0}
+
+.why-grid{
+  display:grid;grid-template-columns:1fr;gap:22px;margin-top:40px;
+}
+@media(min-width:720px){.why-grid{grid-template-columns:1fr 1fr}}
+.why-item{
+  background:var(--white);
+  border-radius:var(--radius);
+  padding:26px 28px;
+  box-shadow:var(--shadow);
+}
+.why-item p{color:var(--gray);margin:0;font-size:.96rem}
+
+/* Testimonials */
+.quote-card{
+  max-width:640px;margin:36px auto 0;
+  background:var(--white);
+  border-radius:var(--radius);
+  border-top:4px solid var(--lavender-deep);
+  padding:34px 38px;
+  box-shadow:var(--shadow);
+}
+.quote-text{font-family:var(--font-serif);font-size:1.15rem;color:var(--ink);line-height:1.6}
+.quote-who{color:var(--gray);font-weight:600;margin:0}
+
+/* Testimonials — horizontal swipe row */
+.quote-row{
+  display:flex;gap:20px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding:36px 4px 14px;
+  scrollbar-width:thin;
+}
+.quote-row .quote-card{
+  flex:0 0 min(85%,460px);
+  margin:0;
+  scroll-snap-align:center;
+  text-align:left;
+}
+.scroll-hint{color:var(--gray);font-size:.85rem;margin-top:4px}
+/* 7 cards no longer fit on one screen, so the swipe hint stays visible at all widths */

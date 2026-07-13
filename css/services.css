@@ -1,0 +1,10 @@
+/* Services page styles */
+.service-section{padding:56px 0}
+.service-section.alt{background:var(--sage-light)}
+.service-inner{max-width:760px}
+.service-inner h2{color:var(--ink)}
+.service-inner p{color:var(--gray)}
+.text-link{
+  color:var(--sage-dark);font-weight:600;
+}
+.text-link:hover{text-decoration:underline}
