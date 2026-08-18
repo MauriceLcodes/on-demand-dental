@@ -1,10 +1,148 @@
 /* Services page styles */
-.service-section{padding:56px 0}
-.service-section.alt{background:var(--sage-light)}
-.service-inner{max-width:760px}
+
+/* FALLBACK — original layout: 12 full-width alternating sections, one
+   service per screen. Replaced with a card grid below because 12 stacked
+   sections read as an endless scroll rather than a scannable list. To
+   revert, uncomment this block, restore the <section class="service-section">
+   markup in services.html / es/services.html, and remove .services-page
+   / .services-grid / .svc-card below.
+.service-section{padding:var(--sp-6) 0}
+@media(min-width:820px){.service-section{padding:var(--sp-7) 0}}
+.service-section.alt{background:linear-gradient(180deg,var(--sage-light) 0%,#DEE6DA 100%)}
+.service-inner{
+  max-width:760px;
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border:1px solid rgba(58,63,68,.07);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-sm);
+  padding:var(--sp-4);
+  transition:box-shadow .22s ease,transform .22s ease;
+}
+@media(min-width:720px){.service-inner{padding:var(--sp-5) var(--sp-6)}}
+.service-inner:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
 .service-inner h2{color:var(--ink)}
 .service-inner p{color:var(--gray)}
+*/
+
 .text-link{
   color:var(--sage-dark);font-weight:600;
 }
 .text-link:hover{text-decoration:underline}
+
+/* CURRENT — single-column stacked list. The card grid (FALLBACK below)
+   worked when every card was a one-line teaser, but once the copy grew to
+   full clinical paragraphs and a bullet list on some cards while others
+   stayed a single sentence, side-by-side columns just made the height
+   mismatch between neighbors obvious. One card per row sidesteps that
+   entirely — each card takes exactly the height its own content needs,
+   with no neighbor to look uneven against. Capped max-width keeps the
+   longer paragraphs at a comfortable reading line-length instead of
+   stretching across the full 1100px container.
+FALLBACK — 2-col/3-col card grid:
+.services-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;
+}
+@media(min-width:640px){.services-grid{gap:22px}}
+@media(min-width:900px){.services-grid{grid-template-columns:repeat(3,1fr);gap:26px}}
+*/
+.services-page{padding:var(--sp-6) 0 var(--sp-7)}
+@media(min-width:820px){.services-page{padding:var(--sp-7) 0}}
+
+.services-grid{
+  max-width:760px;margin:0 auto;
+}
+
+/* Desktop: two-column newspaper-style layout instead of CSS grid. Grid
+   forces every row to align across columns, so a short card next to a
+   long one still leaves a gap under the short one. CSS columns flow each
+   card down a column independently (break-inside:avoid keeps a card from
+   splitting across the column break), so uneven card heights never cause
+   a layout mismatch — the second column just starts wherever the first
+   column's content happens to end. */
+@media(min-width:900px){
+  .services-grid{
+    column-count:2;column-gap:26px;max-width:1020px;
+  }
+}
+
+.svc-card{
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(58,63,68,.07);
+  border-top:4px solid var(--sage);
+  padding:26px 24px;
+  box-shadow:var(--shadow-sm);
+  text-align:left;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+  margin-bottom:18px;
+  break-inside:avoid;
+}
+@media(min-width:640px){.svc-card{margin-bottom:22px}}
+.svc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-top-color:var(--lavender-deep)}
+.svc-card h2{font-size:1.1rem;margin-bottom:8px;color:var(--ink)}
+.svc-card p{color:var(--gray);font-size:.92rem;margin:0}
+.svc-card p + p{margin-top:10px}
+.svc-card ul{margin:10px 0;padding-left:20px}
+.svc-card ul li{color:var(--gray);font-size:.92rem;margin-bottom:5px}
+.svc-card .text-link{display:inline-block;margin-top:8px;font-size:.88rem}
+
+/* FALLBACK — icons were added to 4 of the 12 cards (matching the icon set
+   used on the home page preview), then pulled since a 4-of-12 partial
+   rollout read as unfinished rather than polished. To bring back, re-add
+   the <img src="assets/icons/...png" class="svc-icon"> line to the
+   matching cards in services.html / es/services.html and uncomment below.
+.svc-card .svc-icon{height:56px;width:auto;display:block;margin:0 0 12px}
+@media(max-width:639px){
+  .svc-card .svc-icon{height:44px;margin:0 0 8px}
+}
+*/
+
+/* Real photos (not icons) on the Cleaning, Whitening, and Assessments
+   cards, added when Gloria supplied service photos. Negative margin pulls
+   the photo out to the card's padding edge so it bleeds full-width at the
+   top, while staying inside the border-top accent line (border sits
+   outside the padding box, so it isn't covered). Only rounds the top
+   corners so the photo reads as part of the card, not a separate block.
+   overflow:hidden on the card keeps the bled image from spilling past the
+   card's own rounded corners. Height raised from an earlier 170px pass,
+   which was cropping so tightly (the source photos are portrait/near-square,
+   not wide banners) that the actual subject was getting cut out of frame
+   for some of them. */
+.svc-card{overflow:hidden}
+/* Wrapper + width/height:100% on the img instead of negative-margin bleed
+   directly on the <img>. The calc(100% + Npx) approach was fragile inside
+   this card's multi-column layout context and the image ended up narrower
+   than the card, left-aligned instead of filling it. A fixed-height
+   wrapper with overflow:hidden sidesteps that calc math entirely: the
+   wrapper bleeds via the same negative-margin trick, and the img simply
+   fills 100% of the wrapper in both dimensions. */
+.svc-card .svc-photo-wrap{
+  height:240px;overflow:hidden;
+  margin:-10px -24px 16px;
+  border-radius:calc(var(--radius-lg) - 4px) calc(var(--radius-lg) - 4px) 0 0;
+}
+.svc-card .svc-photo-wrap .svc-photo{
+  display:block;width:100%;height:100%;object-fit:cover;
+}
+@media(max-width:639px){
+  .svc-card .svc-photo-wrap{height:190px;margin:-6px -14px 14px}
+}
+
+/* Per-photo crop focus: object-fit:cover centers by default, which cut off
+   the actual subject in cleaning.jpg (the instrument tray sits in the lower
+   half of that source photo, not the middle) and left too much empty
+   cheek/gum at the edges of the two close-up mouth photos. Shifting the
+   crop anchor keeps the relevant part of each photo in frame instead of
+   relying on a one-size-fits-all center crop. */
+.svc-photo-cleaning{object-position:50% 78%}
+.svc-photo-whitening{object-position:50% 38%}
+.svc-photo-assessment{object-position:50% 32%}
+
+/* Mobile: smaller padding/type so two narrow cards stay comfortable to read,
+   same tightening pattern used on the home page's svc-card/why-item cards */
+@media(max-width:639px){
+  .svc-card{padding:16px 14px}
+  .svc-card h2{font-size:.96rem;margin-bottom:5px;line-height:1.25}
+  .svc-card p{font-size:.82rem}
+  .svc-card ul li{font-size:.82rem}
+}

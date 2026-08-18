@@ -8,14 +8,42 @@
   --lavender-bg:#EFEDF4;
   --lavender:#C9C4DA;
   --lavender-deep:#7B6FA8;
+  --lavender-bright:#7C3AED; /* more saturated purple, same family as
+    lavender-deep but built to stand out as a link/CTA color on white or
+    light backgrounds — used where a muted tone reads as invisible on mobile */
+  --terracotta:#A0522D; /* warm accent, deliberately outside the cool
+    lavender/sage palette — sage + terracotta is a classic pairing, so it
+    reads as an intentional accent rather than a clash. Used sparingly for
+    inline CTA links that need to visibly stand out against body text. */
   --sage:#63795B;      /* darkened for readable white text */
   --sage-dark:#4C5F45;
   --sage-light:#E8EDE5;
   --ink:#3A3F44;
   --gray:#6B7076;
   --white:#FFFFFF;
+
+  /* Spacing scale — every section/heading/gap on the site pulls from this,
+     instead of one-off pixel values, so the rhythm stays consistent */
+  --sp-1:8px;
+  --sp-2:16px;
+  --sp-3:24px;
+  --sp-4:32px;
+  --sp-5:48px;
+  --sp-6:64px;
+  --sp-7:96px;
+  --sp-8:128px;
+
+  /* Radius scale — design-system rule: buttons are always 16px, cards always 20px */
+  --radius-sm:8px;
   --radius:10px;
+  --radius-btn:16px;
+  --radius-lg:20px;
+
+  /* Shadow scale — soft/quiet by default, deeper only on hover/emphasis */
+  --shadow-sm:0 2px 10px rgba(58,63,68,.07);
   --shadow:0 8px 24px rgba(58,63,68,.10);
+  --shadow-lg:0 28px 48px rgba(58,63,68,.16);
+
   --font-serif:Georgia,'Times New Roman',serif;
   --font-sans:'Segoe UI',system-ui,-apple-system,sans-serif;
 }
@@ -33,16 +61,16 @@ body{
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{font-family:var(--font-serif);font-weight:600;line-height:1.25;letter-spacing:.01em}
-h1{font-size:clamp(2rem,5vw,3.1rem)}
-h2{font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:.6em}
-h3{font-size:1.2rem;margin-bottom:.4em}
-p{margin-bottom:1em}
+h1,h2,h3,h4{font-family:var(--font-serif);font-weight:600;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.08;margin-bottom:var(--sp-3)}
+h2{font-size:clamp(1.7rem,3.8vw,2.5rem);margin-bottom:var(--sp-3);line-height:1.18}
+h3{font-size:1.25rem;margin-bottom:var(--sp-2);letter-spacing:0}
+p{margin-bottom:var(--sp-3);max-width:65ch}
 .muted{color:var(--gray)}
 
 .container{max-width:1100px;margin:0 auto;padding:0 22px}
-section{padding:64px 0}
-@media(min-width:820px){section{padding:84px 0}}
+section{padding:var(--sp-6) 0}
+@media(min-width:820px){section{padding:var(--sp-8) 0}}
 
 /* ---------- Buttons ---------- */
 .btn{
@@ -50,37 +78,74 @@ section{padding:64px 0}
   background:var(--sage);
   color:var(--white);
   padding:14px 32px;
-  border-radius:8px;
+  border-radius:var(--radius-btn);
   font-family:var(--font-sans);
   font-weight:600;
   font-size:1rem;
   border:none;
   cursor:pointer;
-  transition:background .2s,transform .15s;
+  transition:background .2s,transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease;
   text-align:center;
   min-height:48px; /* large tap target */
+  box-shadow:0 2px 6px rgba(58,63,68,.12);
+  position:relative;
 }
-.btn:hover{background:var(--sage-dark);transform:translateY(-1px)}
+.btn:hover{background:var(--sage-dark);transform:translateY(-2px);box-shadow:0 12px 24px rgba(58,63,68,.22)}
+.btn:active{transform:translateY(0);box-shadow:0 2px 6px rgba(58,63,68,.12);transition-duration:.05s}
 .btn-outline{
   background:transparent;
   color:var(--lavender-deep);
   border:2px solid var(--lavender);
+  box-shadow:none;
 }
-.btn-outline:hover{background:var(--lavender-bg);color:var(--lavender-deep);transform:none}
+.btn-outline:hover{background:var(--lavender-bg);color:var(--lavender-deep);transform:translateY(-2px);box-shadow:0 10px 20px rgba(58,63,68,.12)}
+.btn-outline:active{transform:translateY(0);box-shadow:none}
 .btn-sm{padding:10px 22px;font-size:.93rem;min-height:44px}
+
+/* Directional arrow on standalone CTAs — skipped on compact header/nav buttons (.btn-sm) to avoid clutter */
+.btn:not(.btn-sm)::after{
+  content:"→";
+  display:inline-block;
+  margin-left:8px;
+  transform:translateX(0);
+  transition:transform .25s ease;
+}
+.btn:not(.btn-sm):hover::after{transform:translateX(4px)}
+
+/* Submit-button loading state (language-agnostic: hides text, shows a spinner) */
+.btn.is-loading{color:transparent;pointer-events:none}
+.btn.is-loading::after{display:none}
+.btn.is-loading::before{
+  content:"";
+  position:absolute;top:50%;left:50%;
+  width:18px;height:18px;margin:-9px 0 0 -9px;
+  border:2.5px solid rgba(255,255,255,.4);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:btn-spin .7s linear infinite;
+}
+.btn-outline.is-loading::before{border-color:rgba(123,111,168,.3);border-top-color:var(--lavender-deep)}
+@keyframes btn-spin{to{transform:rotate(360deg)}}
 
 /* ---------- Header / Navigation ---------- */
 .site-header{
   position:sticky;top:0;z-index:100;
   background:var(--white);
   box-shadow:0 1px 8px rgba(58,63,68,.08);
+  transition:background .25s ease,box-shadow .25s ease;
+}
+.site-header.scrolled{
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 4px 18px rgba(58,63,68,.12);
 }
 /* Header spans the full browser width instead of being capped at 1100px,
    so the logo and buttons sit at the true edges on wide screens */
 .site-header .container{max-width:none;padding:0 clamp(20px,4vw,56px)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:16px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0 30px;gap:16px}
 .brand{flex-shrink:0}
-.brand img{height:80px;width:auto}
+.brand img{height:92px;width:auto}
 .nav-toggle{
   display:block;background:none;border:none;cursor:pointer;
   font-size:1.7rem;color:var(--lavender-deep);padding:8px 12px;line-height:1;
@@ -100,9 +165,21 @@ section{padding:64px 0}
   font-weight:500;color:var(--gray);
   border-radius:6px;
   min-height:48px;display:flex;align-items:center;justify-content:center;
+  position:relative;
+  transition:background .18s ease,color .18s ease;
 }
 .nav-links a:hover{background:var(--lavender-bg);color:var(--ink)}
 .nav-links a.active{color:var(--sage-dark);font-weight:700}
+/* Animated underline — plain nav links only, not the button-styled ones */
+.nav-links a:not(.btn):not(.btn-outline)::after{
+  content:"";
+  position:absolute;left:10px;right:10px;bottom:6px;
+  height:2px;background:var(--sage-dark);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .25s ease;
+}
+.nav-links a:not(.btn):not(.btn-outline):hover::after{transform:scaleX(1)}
+.nav-links a.active:not(.btn):not(.btn-outline)::after{transform:scaleX(1)}
 /* Buttons inside nav must keep their own colors (override .nav-links a) */
 .nav-links a.btn{background:var(--sage);color:var(--white);font-weight:600}
 .nav-links a.btn:hover{background:var(--sage-dark);color:var(--white)}
@@ -116,12 +193,14 @@ section{padding:64px 0}
 @media(max-width:919px){
   /* Fluid sizing: logo, buttons, and menu icon all scale down together as
      the viewport narrows, so everything stays on one row regardless of
-     EN/ES text length instead of a fixed size that only fits some phones */
-  .nav{flex-wrap:wrap;row-gap:8px;gap:clamp(4px,2vw,10px)}
-  .brand img{height:clamp(42px,12vw,54px)}
-  .header-lang{padding:clamp(6px,1.6vw,8px) clamp(8px,2.6vw,12px);font-size:clamp(.68rem,3.2vw,.82rem);min-height:auto}
-  .header-cta{white-space:nowrap;padding:clamp(6px,1.6vw,8px) clamp(10px,3vw,14px);font-size:clamp(.68rem,3.2vw,.82rem);min-height:auto}
-  .nav-toggle{font-size:clamp(1.2rem,4vw,1.5rem);padding:clamp(5px,1.4vw,7px) clamp(6px,2vw,10px)}
+     EN/ES text length instead of a fixed size that only fits some phones.
+     Retuned with lower floors after the language button text grew from
+     "Español"/"English" to "Para Español"/"For English". */
+  .nav{flex-wrap:wrap;row-gap:8px;gap:clamp(3px,1.6vw,10px);padding:10px 0 40px}
+  .brand img{height:clamp(40px,12vw,62px)}
+  .header-lang{white-space:nowrap;padding:clamp(6px,1.6vw,9px) clamp(8px,2.4vw,14px);font-size:clamp(.66rem,3vw,.9rem);min-height:auto}
+  .header-cta{white-space:nowrap;padding:clamp(6px,1.6vw,8px) clamp(9px,2.6vw,16px);font-size:clamp(.66rem,3vw,.9rem);min-height:auto}
+  .nav-toggle{font-size:clamp(1.1rem,3.6vw,1.6rem);padding:clamp(5px,1.4vw,8px) clamp(6px,2vw,11px)}
 }
 
 @media(min-width:920px){
@@ -141,41 +220,132 @@ section{padding:64px 0}
   background:var(--lavender-deep);
   color:var(--white);
   text-align:center;
-  padding:34px 0 30px;
+  padding:var(--sp-6) 0 var(--sp-5);
+  position:relative;
+  overflow:hidden;
 }
-.page-hero p{max-width:640px;margin:12px auto 0;color:rgba(255,255,255,.92);font-size:1.1rem}
+.page-hero p{max-width:640px;margin:var(--sp-2) auto 0;color:rgba(255,255,255,.92);font-size:1.1rem}
+.page-hero .container{position:relative;z-index:1}
+
+/* Soft decorative glow — sits behind the heading, never behind text contrast concerns
+   since it's confined to the colored hero band, not layered under body copy */
+.page-hero::before{
+  content:"";
+  position:absolute;top:-25%;right:-8%;
+  width:320px;height:320px;
+  background:radial-gradient(circle,rgba(255,255,255,.12) 0%,transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+/* Organic wave transition out of the hero band instead of a hard edge —
+   shared by .hero and .page-hero since every page's first content section
+   after the hero is plain white */
+.hero,.page-hero{position:relative;overflow:hidden}
+.hero::after,.page-hero::after{
+  content:"";
+  position:absolute;left:-5%;right:-5%;bottom:-1px;
+  height:26px;
+  background:var(--white);
+  border-radius:50% 50% 0 0/100% 100% 0 0;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ---------- Section background rhythm ---------- */
+/* Centralized here instead of redefined per page-CSS file, and upgraded
+   from a flat color to a quiet gradient so alternating sections read as
+   more than a single flat color swap. */
+.alt-bg{background:linear-gradient(180deg,var(--sage-light) 0%,#DEE6DA 100%)}
+/* Lighter/less saturated than --lavender-bg on purpose — this sits directly
+   above .cta-band on the homepage, so it needs to stay visibly distinct
+   from the CTA's own (more saturated) lavender-bg, not fade into it. */
+.gradient-bg{background:linear-gradient(180deg,var(--white) 0%,#F8F6FB 100%)}
 
 /* ---------- CTA band ---------- */
 .cta-band{
   background:var(--lavender-bg);
   text-align:center;
+  position:relative;
+  overflow:hidden;
 }
-.cta-band p{max-width:560px;margin:0 auto 26px;color:var(--gray)}
+/* A little extra breathing room when the CTA follows directly after an
+   alt-bg section (About, Mobile Care, Home) so the transition doesn't feel
+   abrupt between the two background colors */
+.alt-bg + .cta-band{margin-top:32px}
+/* Very quiet dot pattern — decorative only, stays well under text contrast */
+.cta-band::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(123,111,168,.12) 1.5px,transparent 1.5px);
+  background-size:26px 26px;
+  opacity:.55;
+  pointer-events:none;
+}
+/* Soft color-wash blobs, low opacity, purely decorative depth */
+.cta-band::after{
+  content:"";
+  position:absolute;top:-30%;left:-8%;
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(123,111,168,.14) 0%,transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+}
+.cta-band .container{position:relative;z-index:1}
+.cta-band h2{font-size:clamp(2rem,4.4vw,2.9rem);max-width:640px;margin-left:auto;margin-right:auto}
+.cta-band p{max-width:560px;margin:0 auto var(--sp-4);color:var(--gray);font-size:1.08rem}
+.cta-actions{
+  display:flex;flex-wrap:wrap;gap:var(--sp-2);justify-content:center;
+}
+.cta-badges{
+  list-style:none;
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:8px 22px;margin-top:var(--sp-4);
+  color:var(--sage-dark);font-weight:600;font-size:.88rem;
+}
+.cta-badges li::before{content:"✓ ";color:var(--sage)}
 
 /* ---------- Footer ---------- */
 .site-footer{
   background:var(--ink);
   color:#CFD3D7;
-  padding:52px 0 36px;
+  padding:var(--sp-7) 0 var(--sp-5);
   font-size:.95rem;
 }
-.footer-grid{display:grid;grid-template-columns:1fr;gap:28px}
-@media(min-width:720px){.footer-grid{grid-template-columns:1fr 1fr 1fr}}
-.site-footer h4{color:var(--white);font-family:var(--font-sans);font-size:1rem;margin-bottom:10px}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:var(--sp-5)}
+/* FALLBACK — 3-column layout, used before the footer picked up a 4th
+   (Blog resources) column.
+@media(min-width:720px){.footer-grid{grid-template-columns:1fr 1fr 1fr;gap:var(--sp-4)}}
+*/
+@media(min-width:560px){.footer-grid{grid-template-columns:1fr 1fr;gap:var(--sp-4)}}
+@media(min-width:960px){.footer-grid{grid-template-columns:1fr 1fr 1fr 1fr;gap:var(--sp-4)}}
+.site-footer h4{
+  color:var(--white);font-family:var(--font-sans);
+  font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;
+  margin-bottom:var(--sp-2);
+}
 .site-footer a:hover{color:var(--white);text-decoration:underline}
 .footer-lang{font-family:var(--font-serif);font-size:1.25rem;color:var(--lavender)}
-.contact-line{display:inline-flex;align-items:center;gap:7px;color:inherit}
+.contact-line{display:inline-flex;align-items:center;gap:7px;color:inherit;line-height:2.1}
 .contact-line .contact-icon{width:15px;height:15px;flex-shrink:0}
-.ig-icon-link{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.08);color:inherit;margin-top:4px}
-.ig-icon-link:hover{background:rgba(255,255,255,.18);text-decoration:none !important}
+.ig-icon-link{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.08);color:inherit;margin-top:8px;transition:background .18s ease,transform .18s ease}
+.ig-icon-link:hover{background:rgba(255,255,255,.18);text-decoration:none !important;transform:translateY(-2px)}
 .ig-icon-link svg{width:17px;height:17px}
+.footer-parking{
+  margin-top:10px;
+  color:#CFD3D7;font-size:.88rem;line-height:1.6;
+}
+.footer-parking strong{color:var(--white)}
 .footer-bottom{
-  border-top:1px solid rgba(255,255,255,.15);
-  margin-top:36px;padding-top:20px;
-  text-align:center;color:#9FA6AD;font-size:.87rem;
+  border-top:1px solid rgba(255,255,255,.12);
+  margin-top:var(--sp-6);padding-top:var(--sp-3);
+  text-align:center;color:#9FA6AD;font-size:.85rem;
 }
 
 /* ---------- Floating phone button ---------- */
+/* FALLBACK — original icon-only circle. Gloria didn't notice this button
+   because a bare icon with no text doesn't read as "tap to call." To
+   revert, uncomment this block and comment out the pill version below.
 .phone-fab{
   position:fixed;bottom:22px;right:22px;z-index:200;
   width:58px;height:58px;border-radius:50%;
@@ -186,10 +356,41 @@ section{padding:64px 0}
 }
 .phone-fab:hover{background:var(--sage-dark);transform:scale(1.06)}
 .phone-fab svg{width:26px;height:26px;fill:var(--white)}
+*/
+
+/* CURRENT — labeled pill so the button is bigger, obvious, and self-explanatory */
+.phone-fab{
+  position:fixed;bottom:22px;right:22px;z-index:200;
+  display:flex;align-items:center;gap:9px;
+  height:52px;padding:0 20px 0 16px;border-radius:999px;
+  background:var(--sage);color:var(--white);
+  font-weight:700;font-size:.95rem;white-space:nowrap;
+  box-shadow:0 6px 18px rgba(95,113,97,.45);
+  transition:background .2s,transform .2s,box-shadow .2s,opacity .2s;
+}
+.phone-fab:hover{background:var(--sage-dark);transform:scale(1.04);box-shadow:0 8px 22px rgba(95,113,97,.55)}
+/* Faded out (instead of removed) whenever it would visually sit on top of
+   the booking form's submit button or a phone number link — see the
+   overlap check in main.js. Kept interactive/clickable while faded rather
+   than display:none, since it still works, it's just visually out of the way. */
+.phone-fab.phone-fab-hidden{opacity:0;transform:translateY(10px) scale(.92);pointer-events:none}
+.phone-fab svg{width:22px;height:22px;fill:var(--white);flex-shrink:0}
+.phone-fab-label{line-height:1}
+@media(max-width:480px){
+  .phone-fab{height:48px;padding:0 16px 0 13px;gap:7px;font-size:.88rem}
+  .phone-fab svg{width:20px;height:20px}
+}
 
 /* ---------- Utilities ---------- */
 .split{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
 @media(min-width:820px){.split{grid-template-columns:1fr 1fr;gap:56px}}
+/* Grid items default to min-width:auto, which floors them at their content's
+   own min-content size. A wide, fixed-width scrolling row (the photo-row
+   carousel) has a large min-content size, so without this the column
+   itself was stretching to fit all the photos instead of staying at its
+   assigned width and letting .photo-row's own overflow-x:auto scroll
+   internally — the whole row was spilling out past the page edge. */
+.split > *{min-width:0}
 .rounded-img{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;object-fit:cover}
 .img-placeholder{
   border-radius:var(--radius);background:var(--lavender);
@@ -199,7 +400,122 @@ section{padding:64px 0}
 .eyebrow{
   font-family:var(--font-sans);
   color:var(--sage-dark);font-weight:700;
-  text-transform:uppercase;letter-spacing:.09em;font-size:.82rem;
-  display:block;margin-bottom:10px;
+  text-transform:uppercase;letter-spacing:.11em;font-size:.82rem;
+  display:block;margin-bottom:var(--sp-2);
+}
+/* Credential text next to a heading (e.g. name + license letters) — now
+   matched to the name's own size/weight so the two read as one line
+   ("Gloria Morejon BSDH, RDHAP") instead of a small label beside a big
+   heading. Deliberately sized smaller than the page's default h2 (not
+   using the h2 clamp) so "Gloria Morejon" + "BSDH, RDHAP" both fit on
+   one line down to ~375px-wide phones instead of wrapping. */
+.credential-line{
+  font-family:var(--font-serif);
+  color:var(--sage-dark);font-weight:600;
+  letter-spacing:-.01em;
+  font-size:1.15rem;
+}
+.name-row{
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  gap:4px 10px;margin-bottom:var(--sp-3);
+}
+.name-row h2{margin-bottom:0;font-size:1.15rem}
+
+/* Short first-person quote — a plain italic line with a rule and a small
+   attribution, no icons or color blocks, to keep the restrained look while
+   adding warmth */
+.pull-quote{
+  border-left:2px solid var(--sage);
+  padding-left:18px;margin:var(--sp-4) 0;
+}
+.pull-quote p{
+  font-family:var(--font-serif);font-style:italic;
+  font-size:1.2rem;color:var(--ink);line-height:1.5;
+  margin-bottom:8px;
+}
+.pull-quote cite{
+  display:block;font-style:normal;
+  font-family:var(--font-sans);font-size:.85rem;
+  color:var(--gray);
 }
 .center{text-align:center}
+
+/* Small "Se habla español" note — badge-style pill instead of a bare line
+   of text, so it reads as a deliberate trust signal (same idea as the
+   checkmark-style .cta-badges) rather than an orphaned sentence sitting by
+   itself. Shared across pages (About, Book) that need this note outside a
+   card. */
+.lang-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--lavender-bg);color:var(--lavender-deep);
+  font-family:var(--font-sans);font-weight:700;font-size:.85rem;
+  letter-spacing:.02em;
+  padding:9px 18px;border-radius:999px;
+  margin-top:var(--sp-3);
+}
+.lang-badge::before{content:"🌐";font-size:.9rem}
+
+/* Shared inline link style — "Learn more →", "Read more →", related-post
+   links, etc. (book.css and services.css also define this locally; kept
+   here too so pages without a page-specific stylesheet override, like
+   mobile.css, get it globally.) */
+.text-link{color:var(--sage-dark);font-weight:600}
+.text-link:hover{text-decoration:underline}
+
+/* ---------- Image frame (contains hover zoom without breaking layout) ---------- */
+.img-frame{
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  position:relative;
+}
+.img-frame .rounded-img{
+  box-shadow:none;border-radius:0;
+  transition:transform .5s ease;
+}
+.img-frame:hover .rounded-img{transform:scale(1.025)}
+.img-frame::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(58,63,68,0) 55%,rgba(58,63,68,.16) 100%);
+  opacity:0;
+  transition:opacity .35s ease;
+  pointer-events:none;
+}
+.img-frame:hover::after{opacity:1}
+
+/* Floating badge — sits on a wrapper OUTSIDE .img-frame's own overflow:hidden,
+   so it isn't clipped by the zoom-containment rule above */
+.photo-wrap{position:relative}
+.floating-badge{
+  position:absolute;bottom:-14px;right:-14px;
+  width:54px;height:54px;
+  background:var(--sage);color:var(--white);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-lg);
+  border:3px solid var(--white);
+  z-index:2;
+}
+.floating-badge svg{width:24px;height:24px}
+
+/* ---------- Scroll-triggered section entrances ---------- */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease-out,transform .6s ease-out}
+.reveal-visible{opacity:1;transform:none}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop-in{
+  0%{transform:scale(0);opacity:0}
+  60%{transform:scale(1.12);opacity:1}
+  100%{transform:scale(1)}
+}
+.thanks .check{animation:pop-in .5s cubic-bezier(.34,1.56,.64,1) both}
+.thanks h1{animation:fade-up .5s ease .15s both}
+.thanks p{animation:fade-up .5s ease .28s both}
+.thanks .btn{animation:fade-up .5s ease .4s both}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .thanks .check,.thanks h1,.thanks p,.thanks .btn{animation:none}
+  .img-frame:hover .rounded-img{transform:none}
+}

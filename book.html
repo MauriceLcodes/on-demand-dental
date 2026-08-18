@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book an Appointment | On Demand Dental — Office & Mobile Visits</title>
-<meta name="description" content="Request a dental hygiene appointment at our Woodland Hills office or schedule a mobile visit at home or in a care facility. Call 818-821-5065 or book online.">
+<title>Book an Appointment | On Demand Dental — Office & Concierge Visits</title>
+<meta name="description" content="Request a dental hygiene appointment at our Woodland Hills office or schedule a concierge visit at home or in a care facility. Call 818-821-5065 or book online.">
+<link rel="canonical" href="https://ondemanddental.net/book.html">
+<link rel="alternate" hreflang="en" href="https://ondemanddental.net/book.html">
+<link rel="alternate" hreflang="es" href="https://ondemanddental.net/es/book.html">
+<link rel="alternate" hreflang="x-default" href="https://ondemanddental.net/book.html">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/book.css">
 <link rel="icon" type="image/png" href="images/logo.png">
@@ -16,15 +20,16 @@
     <a href="index.html" class="brand" aria-label="On Demand Dental home">
       <img src="images/logo.png" alt="On Demand Dental logo, purple tooth with toothbrush">
     </a>
-    <a href="es/book.html" class="btn btn-outline btn-sm header-lang" lang="es">Español</a>
+    <a href="es/book.html" class="btn btn-outline btn-sm header-lang" lang="es">Para Español</a>
     <a href="book.html" class="btn btn-sm header-cta">Book Appointment</a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav class="nav-links" aria-label="Main navigation">
       <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="mobile-care.html">Mobile Care</a>
+      <a href="services-pricing.html">Services &amp; Pricing</a>
+      <a href="mobile-care.html">Our Mission</a>
       <a href="about.html">About</a>
-      <a href="es/book.html" class="btn btn-outline btn-sm" lang="es">Español</a>
+      <a href="#contact">Contact</a>
+      <a href="es/book.html" class="btn btn-outline btn-sm" lang="es">Para Español</a>
       <a href="book.html" class="btn btn-sm">Book Appointment</a>
     </nav>
   </div>
@@ -49,7 +54,7 @@
           <p>Come to our calm, comfortable office in Woodland Hills.</p>
         </div>
         <div class="visit-option">
-          <h3>Mobile Visit</h3>
+          <h3>Concierge Visit</h3>
           <p>We come to you, at home, in assisted living, or in a skilled nursing facility.</p>
         </div>
 
@@ -61,7 +66,8 @@
           <p>✉️ <a href="mailto:ondemanddental@gmail.com" class="text-link">ondemanddental@gmail.com</a></p>
           <p>🕒 By appointment only</p>
         </address>
-        <p lang="es" class="lang-note">Se habla español</p>
+        <p class="parking-note"><strong>Parking:</strong> Street parking is available on Variel Ave at the front entrance, or use retail parking behind the Q Apartment Building. Follow the signs marked "Retail," take a ticket, and validation will be provided.</p>
+        <p lang="es" class="lang-badge">Se habla español</p>
 
         <iframe
           class="map"
@@ -71,10 +77,9 @@
           referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
-      <form name="appointment" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" class="book-form">
+      <form name="appointment" method="POST" action="/thanks.html" data-netlify="true" data-netlify-ajax="true" data-redirect="/thanks.html" netlify-honeypot="bot-field" class="book-form">
         <h2>Request an Appointment</h2>
         <input type="hidden" name="form-name" value="appointment">
-        <input type="hidden" name="language" value="English">
         <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
         <div class="field">
           <label for="name">Full Name</label>
@@ -92,17 +97,20 @@
           <label for="visit_type">Visit Type</label>
           <select id="visit_type" name="visit_type">
             <option>Office Visit (Woodland Hills)</option>
-            <option>Mobile Visit — Home</option>
-            <option>Mobile Visit — Assisted Living / Skilled Nursing</option>
+            <option>Concierge Visit — Home</option>
+            <option>Concierge Visit — Assisted Living / Skilled Nursing</option>
             <option>Not sure yet</option>
           </select>
         </div>
         <div class="field">
           <label for="notes">Notes (optional)</label>
           <textarea id="notes" name="notes" rows="3" placeholder="Preferred days/times, patient needs, questions…"></textarea>
+          <p class="field-caution">This form isn't a secure medical channel — please don't include health conditions, medications, insurance details, or other medical information here. For medical details or care questions, please call us at 818-821-5065.</p>
         </div>
+        <input type="hidden" name="language" value="English">
+        <p class="form-error" role="alert" aria-live="polite">Please double-check the highlighted field(s) above.</p>
         <button type="submit" class="btn btn-full">Submit Request</button>
-        <p class="form-note"><strong>Privacy Notice:</strong> please don't include sensitive medical information, insurance details, or confidential health information in this form. It's intended for appointment requests only. If you need to discuss your dental or medical history, call our office at 818-821-5065. We'll never share your information. <a href="privacy.html" style="color:var(--sage-dark)">Privacy Policy</a></p>
+        <p class="form-note"><strong>Privacy:</strong> This form is for appointment requests only. We use your information only to respond to your request and manage scheduling. We do not sell your information or share it for marketing purposes. <a href="privacy.html" style="color:var(--sage-dark)">Privacy Policy</a></p>
       </form>
 
     </div>
@@ -118,23 +126,23 @@
       </details>
 
       <details>
-        <summary>Can I request a mobile visit for a family member?</summary>
+        <summary>Can I request a concierge visit for a family member?</summary>
         <p>Yes. Family members and facility coordinators regularly request visits on a patient's behalf. Just include the details in the notes field.</p>
       </details>
 
       <details>
-        <summary>What areas do you serve for mobile visits?</summary>
+        <summary>What areas do you serve for concierge visits?</summary>
         <p>We serve Woodland Hills and surrounding communities in the San Fernando Valley. Contact us if you're unsure whether your location is covered.</p>
       </details>
 
       <details>
         <summary>How long does a visit take?</summary>
-        <p>Appointment length varies based on your individual needs. Whether you're visiting our Woodland Hills office or receiving mobile care, we'll provide a more accurate time estimate when we confirm your appointment.</p>
+        <p>Appointment length varies based on your individual needs. Whether you're visiting our Woodland Hills office or receiving concierge care, we'll provide a more accurate time estimate when we confirm your appointment.</p>
       </details>
 
       <details>
-        <summary lang="es">¿Hablan español?</summary>
-        <p lang="es">Sí, se habla español. Puede llamar o enviar su solicitud en español.</p>
+        <summary>Do you speak Spanish? <span lang="es">(Se habla español)</span></summary>
+        <p>Yes, we speak Spanish. You can call or submit your request in Spanish. <span lang="es">— Sí, hablamos español. Puede llamar o enviar su solicitud en español.</span></p>
       </details>
 
     </div>
@@ -154,7 +162,7 @@
         </a>
       </address>
     </div>
-    <div>
+    <div id="contact">
       <h4>Contact</h4>
       <a href="tel:+18188215065" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 818-821-5065</a><br>
       <a href="mailto:ondemanddental@gmail.com" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> ondemanddental@gmail.com</a><br>
@@ -165,12 +173,17 @@
       <h4 lang="es">Se habla español</h4>
       <a href="es/book.html" lang="es">Ver sitio en español</a>
     </div>
+    <div>
+      <h4>Dental Hygiene Resources</h4>
+      <a href="blog/index.html">Blog</a>
+    </div>
   </div>
   <div class="container footer-bottom">© 2026 On Demand Dental. All rights reserved. · <a href="privacy.html">Privacy Policy</a></div>
 </footer>
 
 <a href="tel:+18188215065" class="phone-fab" aria-label="Call On Demand Dental at 818-821-5065">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>
+  <span class="phone-fab-label">Call</span>
 </a>
 
 <script src="js/main.js"></script>

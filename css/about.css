@@ -1,8 +1,12 @@
 /* About page styles */
 .narrow{max-width:800px}
 .narrow p{color:var(--gray)}
-.alt-bg{background:var(--sage-light)}
-.portrait{max-height:520px;object-fit:cover;object-position:top}
+/* No height cap on mobile — the photo shows in full, uncropped, at its
+   natural aspect ratio. The cap only kicks in once the layout switches to
+   the two-column split (820px+), where a bounded height keeps the photo
+   proportional next to the text column. */
+.portrait{object-fit:cover;object-position:top}
+@media(min-width:820px){.portrait{max-height:520px}}
 .img-placeholder.portrait{min-height:420px}
 
 /* Gloria bio section — white background, matches the purple/white/green
@@ -10,7 +14,23 @@
 .bio-section{background:var(--white)}
 .bio-section .eyebrow{color:var(--sage-dark)}
 .bio-section h2{color:var(--ink)}
-.bio-section p{color:var(--gray)}
+.bio-section p{color:var(--gray);max-width:58ch}
+/* Top-align the photo with the heading instead of centering it in the
+   column, so the portrait starts at the same line as "Gloria Morejon" */
+.bio-section .split{align-items:start}
+/* Nudge the photo up slightly so its top edge reads as level with the
+   heading rather than a few pixels below it */
+@media(min-width:820px){.bio-section .img-frame{margin-top:-18px}}
+
+/* Small uppercase labels breaking up the bio paragraphs, subtle enough not
+   to compete with "Gloria Morejon" — tighter tracking than a typical eyebrow
+   label so they read as headings, not nav items */
+.bio-subhead{
+  font-family:var(--font-sans);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;font-size:.78rem;
+  color:var(--gray);margin:var(--sp-4) 0 6px;
+}
+.name-row + .bio-subhead{margin-top:0}
 
 /* No headshot yet — use the full section width so there's no empty gap.
    Switch this section back to "container split" and un-comment the <img>

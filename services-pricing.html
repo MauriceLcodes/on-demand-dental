@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services &amp; Pricing | On Demand Dental — Woodland Hills, CA</title>
+<meta name="description" content="Dental hygiene services and prices for On Demand Dental in Woodland Hills, including concierge visits. Routine cleanings, periodontal care, and more.">
+<link rel="canonical" href="https://ondemanddental.net/services-pricing.html">
+<link rel="alternate" hreflang="en" href="https://ondemanddental.net/services-pricing.html">
+<link rel="alternate" hreflang="es" href="https://ondemanddental.net/es/services.html">
+<link rel="alternate" hreflang="x-default" href="https://ondemanddental.net/services-pricing.html">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/services.css">
+<link rel="icon" type="image/png" href="images/logo.png">
+<style>
+  /* Price line sits under each card's own copy, separated by a thin rule,
+     rather than up top next to the heading, so the clinical description
+     reads first and the price reads like a footer to it. */
+  .svc-price-line{
+    margin-top:14px;padding-top:12px;
+    border-top:1px solid rgba(58,63,68,.1);
+    display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+  }
+  .svc-price-label{
+    font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--gray);font-weight:700;
+  }
+  .svc-price-amount{
+    font-family:var(--font-serif);font-weight:700;color:var(--sage-dark);font-size:1.15rem;
+  }
+  .svc-price-line.included .svc-price-amount{
+    font-family:var(--font-sans);font-weight:600;font-size:.85rem;
+    color:var(--gray);
+  }
+
+  .price-note{
+    background:var(--sage-light);border-radius:var(--radius);
+    padding:20px 22px;margin:0 0 34px;max-width:760px;margin-left:auto;margin-right:auto;
+    font-size:.92rem;color:var(--ink);
+  }
+  .price-note strong{color:var(--sage-dark)}
+
+  .price-disclaimer-wrap{text-align:center;margin:0 0 30px}
+  .price-disclaimer{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--lavender-bg);color:var(--lavender-deep);
+    font-size:.78rem;font-weight:600;letter-spacing:.01em;
+    padding:8px 16px;border-radius:999px;
+  }
+
+  /* FALLBACK — .launch-special: used for the "No Concierge Visit Fee" launch
+     promo banner on the mobile/concierge card. Removed once the launch
+     special ended; kept here in case a similar time-limited promo returns.
+  .launch-special{
+    display:inline-block;background:var(--sage-light);border-radius:var(--radius);
+    padding:10px 16px;margin-top:14px;
+    font-size:.88rem;color:var(--sage-dark);font-weight:700;
+  }
+  */
+
+  .payment-grid{
+    display:grid;grid-template-columns:1fr;gap:16px;max-width:760px;margin:0 auto;
+  }
+  @media(min-width:640px){.payment-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:900px){.payment-grid{grid-template-columns:repeat(4,1fr)}}
+  .payment-card{
+    background:#fff;border-radius:var(--radius);border:1px solid rgba(58,63,68,.07);
+    padding:20px 22px;box-shadow:var(--shadow-sm);
+  }
+  .payment-card h3{font-size:1rem;margin-bottom:6px;color:var(--ink)}
+  .payment-card p{font-size:.88rem;color:var(--gray);margin:0}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand" aria-label="On Demand Dental home">
+      <img src="images/logo.png" alt="On Demand Dental logo, purple tooth with toothbrush">
+    </a>
+    <a href="es/index.html" class="btn btn-outline btn-sm header-lang" lang="es">Para Español</a>
+    <a href="book.html" class="btn btn-sm header-cta">Book Appointment</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="services-pricing.html" class="active">Services &amp; Pricing</a>
+      <a href="mobile-care.html">Our Mission</a>
+      <a href="about.html">About</a>
+      <a href="#contact">Contact</a>
+      <a href="es/index.html" class="btn btn-outline btn-sm" lang="es">Para Español</a>
+      <a href="book.html" class="btn btn-sm">Book Appointment</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Services &amp; Pricing</h1>
+      <p>Professional dental hygiene care, delivered in our Woodland Hills office or brought directly to you, with pricing included below.</p>
+    </div>
+  </section>
+
+  <section class="services-page no-reveal">
+    <div class="container">
+
+      <p class="price-disclaimer-wrap"><span class="price-disclaimer">ⓘ Prices are subject to change without notice</span></p>
+
+      <div class="services-grid">
+
+        <div class="svc-card" id="mobile">
+          <h2>Care That Comes to You</h2>
+          <p>Every service here can also be delivered as a concierge visit outside the office: at home, in assisted living, or in a skilled nursing facility, with the same standard of care.</p>
+          <a href="mobile-care.html" class="text-link">Learn more →</a>
+        </div>
+
+        <div class="svc-card" id="assessments">
+          <div class="svc-photo-wrap">
+            <img src="assets/services-pictures/oral-assessment.jpg" alt="Hygienist performing an oral health assessment" class="svc-photo svc-photo-assessment">
+          </div>
+          <h2>Oral Health Assessments &amp; Screenings</h2>
+          <p>Every appointment begins with a comprehensive oral health assessment to evaluate your overall oral and systemic health. Your assessment includes:</p>
+          <ul>
+            <li>A thorough oral cancer screening</li>
+            <li>An evaluation of your oral hygiene and gum health</li>
+            <li>Blood pressure (hypertension) screening</li>
+            <li>A personalized cavity (caries) risk assessment</li>
+            <li>Intraoral photographs and digital X-rays when clinically indicated</li>
+          </ul>
+          <p>These screenings help identify potential concerns early, allowing us to provide personalized recommendations and preventive care tailored to your unique oral health needs.</p>
+          <div class="svc-price-line included">
+            <span class="svc-price-amount">Included in every visit</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="cleanings">
+          <div class="svc-photo-wrap">
+            <img src="assets/services-pictures/cleaning.jpg" alt="Dental instruments arranged for a routine cleaning" class="svc-photo svc-photo-cleaning">
+          </div>
+          <h2>Adult Prophylaxis (Routine Dental Cleaning)</h2>
+          <p>Regular brushing and flossing are essential for maintaining oral health; however, they may not remove all plaque and tartar above the gumline. Dental prophylaxis is a preventive cleaning procedure designed to remove these deposits, reduce the risk of gum inflammation, and help maintain a healthy smile.</p>
+          <p>Prophylaxis is recommended for patients with healthy gums and is not appropriate for individuals with significant deposits below the gumline, active periodontal disease, or deeper periodontal pockets. In these cases, a different type of periodontal therapy may be recommended based on your specific needs.</p>
+          <p>For patients who qualify, routine prophylaxis appointments are typically recommended every six months to help maintain optimal oral health.</p>
+          <div class="svc-price-line">
+            <span class="svc-price-amount">$125</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="cleanings-child">
+          <h2>Child Prophylaxis (Routine Dental Cleaning)</h2>
+          <p>The same gentle, preventive cleaning as the adult prophylaxis above, sized and paced for younger patients to help build healthy habits early and catch small concerns before they grow.</p>
+          <div class="svc-price-line">
+            <span class="svc-price-amount">$75</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="gingivitis-scaling">
+          <h2>Scaling in the Presence of Gingivitis</h2>
+          <p>Scaling in the presence of inflammation is a specialized dental cleaning designed to gently and effectively address gum inflammation caused by plaque and tartar buildup. This treatment requires additional time and attention compared to a routine cleaning due to the increased sensitivity and inflammation of the gums. Our goal is to help restore your gums to a healthier, more balanced state while providing a comfortable and personalized care experience.</p>
+          <div class="svc-price-line">
+            <span class="svc-price-amount">$180</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="root-planing">
+          <h2>Scaling and Root Planing (Deep Cleaning)</h2>
+          <p>Our scaling and root planing service is a specialized deep cleaning procedure designed to remove plaque, tartar, and bacterial buildup from above and below the gumline. This essential periodontal treatment helps reduce inflammation, support healthier gums, and create a cleaner environment for healing.</p>
+          <p>By addressing the underlying causes of gum disease, scaling and root planing can help restore gum health, improve your oral comfort, and support the long-term stability of your smile.</p>
+          <div class="svc-price-line">
+            <span class="svc-price-amount">$150</span>
+            <span class="svc-price-label">Per quadrant</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="periodontal-maintenance">
+          <h2>Periodontal Maintenance</h2>
+          <p>Periodontal maintenance is a cleaning designed for patients with a history of periodontal disease who have completed treatment, such as scaling and root planing. Regular maintenance visits help control bacteria, reduce inflammation, and prevent disease progression.</p>
+          <p>To effectively manage periodontal health, maintenance appointments are typically recommended every three to four months based on your individual needs and risk factors.</p>
+          <div class="svc-price-line">
+            <span class="svc-price-amount">$150</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="fluoride">
+          <h2>Fluoride Application</h2>
+          <p>Topical fluoride is a treatment that is applied to teeth to help strengthen enamel and prevent cavities. It also helps with tooth sensitivity. Fluoride works by remineralizing enamel and inhibiting bacterial metabolism, which reduces the growth of plaque bacteria. This treatment is recommended for clients who are at high risk for cavities, tooth sensitivity, and recession.</p>
+          <div class="svc-price-line">
+            <span class="svc-price-label">Add-on</span>
+            <span class="svc-price-amount">$30</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="whitening">
+          <div class="svc-photo-wrap">
+            <img src="assets/services-pictures/whitening.jpg" alt="Close-up of whitened teeth" class="svc-photo svc-photo-whitening">
+          </div>
+          <h2>Professional Teeth Whitening</h2>
+          <p>Brighten your smile with a personalized teeth whitening experience designed around your comfort and goals. Professional whitening can help reduce the appearance of stains caused by coffee, tea, wine, tobacco, and everyday habits, revealing a refreshed and more radiant smile.</p>
+          <div class="svc-price-line included">
+            <span class="svc-price-amount">Referral, ask for details</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="hygiene-instructions">
+          <h2>Oral Hygiene Instruction &amp; Nutritional Counseling</h2>
+          <p>Personalized oral hygiene education is provided based on each patient's individual needs, lifestyle, and oral health goals. For concierge clients receiving in-home care, guidance and support are provided to caregivers and family members to help maintain consistent oral care routines.</p>
+          <p>Nutritional counseling is available for patients with increased risk factors for tooth decay and enamel erosion. Through education and practical recommendations, patients are empowered to make informed choices that support healthier teeth, gums, and overall oral wellness.</p>
+          <div class="svc-price-line included">
+            <span class="svc-price-amount">Included in every visit</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="product-recommendations">
+          <h2>Product Recommendations</h2>
+          <p>Help choosing the right toothbrush, floss, or toothpaste for your specific needs.</p>
+          <div class="svc-price-line included">
+            <span class="svc-price-amount">Included</span>
+          </div>
+        </div>
+
+        <div class="svc-card" id="referrals">
+          <h2>Referral to Local Dentists</h2>
+          <p>Comprehensive care means knowing when collaboration is needed. If your oral health needs extend beyond hygiene services, I will provide guidance and trusted referrals to local dentists who can continue your care. I am committed to supporting your smile every step of the way.</p>
+        </div>
+
+      </div>
+
+      <h2 class="center" style="margin-top:48px">Payment Accepted</h2>
+      <div class="payment-grid">
+        <div class="payment-card">
+          <h3>Cash</h3>
+          <p>Accepted at time of service.</p>
+        </div>
+        <div class="payment-card">
+          <h3>Zelle</h3>
+          <p>Send payment directly at time of service.</p>
+        </div>
+        <div class="payment-card">
+          <h3>Tap to Pay</h3>
+          <p>Contactless card or phone payment accepted on-site.</p>
+        </div>
+        <div class="payment-card">
+          <h3>Insurance</h3>
+          <p>Delta Dental PPO.<br>Medi-Cal coming soon.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Ready to schedule your visit?</h2>
+      <p>Office or concierge, we'll find a time that works for you.</p>
+      <a class="btn" href="book.html">Book Appointment</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h4>On Demand Dental</h4>
+      <address style="font-style:normal">
+        <a href="https://maps.google.com/?q=6200+Variel+Ave+Suite+1A+Unit+121+Woodland+Hills+CA+91367" target="_blank" rel="noopener">
+          6200 Variel Ave<br>
+          Suite 1A, Unit 121<br>
+          Woodland Hills, CA 91367
+        </a>
+      </address>
+    </div>
+    <div id="contact">
+      <h4>Contact</h4>
+      <a href="tel:+18188215065" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 818-821-5065</a><br>
+      <a href="mailto:ondemanddental@gmail.com" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> ondemanddental@gmail.com</a><br>
+      <a href="https://www.instagram.com/ondemanddental_/" target="_blank" rel="noopener" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> ondemanddental_</a><br>
+      <a href="book.html">By appointment only</a>
+    </div>
+    <div>
+      <h4 lang="es">Se habla español</h4>
+      <a href="es/index.html" lang="es">Ver sitio en español</a>
+    </div>
+    <div>
+      <h4>Dental Hygiene Resources</h4>
+      <a href="blog/index.html">Blog</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">© 2026 On Demand Dental. All rights reserved. · <a href="privacy.html">Privacy Policy</a></div>
+</footer>
+
+<a href="tel:+18188215065" class="phone-fab" aria-label="Call On Demand Dental at 818-821-5065">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>
+  <span class="phone-fab-label">Call</span>
+</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>

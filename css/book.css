@@ -6,13 +6,28 @@
 @media(min-width:880px){.book-grid{grid-template-columns:1fr 1.1fr;gap:60px}}
 
 .book-info p{color:var(--gray)}
+
+/* Parking note under the Contact address block. This section has a light
+   background (unlike the dark site footer), so it needs its own readable
+   colors instead of reusing the footer's white-on-dark .footer-parking
+   styling, which was unreadable here (light gray text and a white
+   "Parking:" label on a white background). */
+.parking-note{
+  color:var(--gray);font-size:.92rem;line-height:1.6;
+  margin:14px 0 24px;
+}
+.parking-note strong{color:var(--sage-dark)}
 .visit-option{
   background:var(--sage-light);
-  border-radius:var(--radius);
-  padding:20px 24px;margin-bottom:14px;
+  border-radius:var(--radius-lg);
+  padding:22px 24px;margin-bottom:var(--sp-2);
 }
 .visit-option p{margin:0;font-size:.95rem}
+/* FALLBACK — replaced by the shared .lang-badge pill in global.css, used
+   on both the About and Book pages for consistency. To revert, swap the
+   lang-badge class back to lang-note in book.html / es/book.html.
 .lang-note{font-family:var(--font-serif);font-size:1.3rem;color:var(--lavender-deep)}
+*/
 .text-link{color:var(--sage-dark);font-weight:600}
 .text-link:hover{text-decoration:underline}
 .map{
@@ -22,10 +37,11 @@
 
 /* Form */
 .book-form{
-  background:var(--white);
-  border-radius:var(--radius);
-  padding:32px 30px;
-  box-shadow:0 14px 34px rgba(58,63,68,.14);
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(58,63,68,.07);
+  padding:34px 30px;
+  box-shadow:var(--shadow-lg);
   border-top:5px solid var(--sage);
 }
 .book-form h2{font-size:1.5rem}
@@ -33,33 +49,88 @@
 .field{margin-bottom:16px}
 .field label{
   display:block;font-weight:600;font-size:.9rem;margin-bottom:6px;
+  transition:color .18s ease;
 }
+.field:focus-within label{color:var(--sage-dark)}
 .field input,.field select,.field textarea{
   width:100%;padding:13px 14px;
   border:1.5px solid var(--lavender);
   border-radius:8px;font-size:1rem;font-family:var(--font-sans);
   min-height:48px;
+  transition:border-color .18s ease,box-shadow .18s ease;
 }
 .field textarea{min-height:90px}
+
+/* Caution note directly under the Notes field — catches patients before
+   they type something sensitive, rather than only warning them in the
+   small print after they've already filled out the form. Calm tone (info
+   icon in the brand's lavender, not an alarm color) per the goal of
+   informing without scaring people off the form. */
+.field-caution{
+  margin:8px 0 0;color:var(--gray);font-size:.82rem;line-height:1.5;
+  display:flex;align-items:flex-start;gap:6px;
+}
+.field-caution::before{content:"ℹ";flex-shrink:0;color:var(--lavender-deep);font-weight:700}
 .field input:focus,.field select:focus,.field textarea:focus{
   outline:none;border-color:var(--sage);
   box-shadow:0 0 0 3px rgba(124,148,115,.15);
 }
+
+/* Valid entry — quiet checkmark appended to the label, no layout shift */
+.field.is-valid label::after{
+  content:"✓";
+  display:inline-block;
+  margin-left:6px;
+  color:var(--sage-dark);
+  font-weight:700;
+  animation:pop-in .25s ease;
+}
+.field.is-valid input,.field.is-valid select,.field.is-valid textarea{border-color:var(--sage)}
+
+/* Invalid entry — red border with a brief shake */
+.field.is-invalid input,.field.is-invalid select,.field.is-invalid textarea{
+  border-color:#C0453D;
+  animation:field-shake .4s ease;
+}
+@keyframes field-shake{
+  10%,90%{transform:translateX(-1px)}
+  20%,80%{transform:translateX(2px)}
+  30%,50%,70%{transform:translateX(-4px)}
+  40%,60%{transform:translateX(4px)}
+}
+
+/* Shared error banner, revealed smoothly when validation fails */
+.form-error{
+  color:#C0453D;font-size:.88rem;font-weight:600;
+  text-align:center;
+  max-height:0;opacity:0;overflow:hidden;margin:0;
+  transition:max-height .3s ease,opacity .3s ease,margin .3s ease;
+}
+.form-error.show{max-height:40px;opacity:1;margin:0 0 14px}
+
 .btn-full{width:100%}
 .form-note{
   text-align:center;color:var(--gray);
   font-size:.8rem;margin:12px 0 0;
 }
 
+@media(prefers-reduced-motion:reduce){
+  .field.is-valid label::after{animation:none}
+  .field.is-invalid input,.field.is-invalid select,.field.is-invalid textarea{animation:none}
+}
+
 /* FAQs */
 .faq-section{background:var(--lavender-bg)}
 .narrow{max-width:760px}
 .faq-section details{
-  background:var(--white);
-  border-radius:var(--radius);
-  padding:18px 22px;margin-bottom:12px;
-  box-shadow:var(--shadow);
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(58,63,68,.07);
+  padding:20px 22px;margin-bottom:var(--sp-2);
+  box-shadow:var(--shadow-sm);
+  transition:box-shadow .2s ease,transform .2s ease;
 }
+.faq-section details:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
 .faq-section summary{
   cursor:pointer;font-weight:600;font-size:1.02rem;
   min-height:32px;

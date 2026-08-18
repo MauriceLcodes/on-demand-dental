@@ -1,20 +1,33 @@
 /* Mobile Care page styles */
 .narrow{max-width:800px}
 .narrow p{color:var(--gray)}
-.alt-bg{background:var(--sage-light)}
 
+/* Two columns at every width, same pattern as the home page's Why-grid and
+   Services preview — four cards stacked in a single column on mobile made
+   this section scroll on much longer than it needed to. */
 .who-grid{
-  display:grid;grid-template-columns:1fr;gap:18px;margin-top:32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px;
 }
-@media(min-width:680px){.who-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:680px){.who-grid{gap:18px}}
 .who-card{
-  background:var(--white);
-  border-radius:var(--radius);
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(58,63,68,.07);
   border-left:4px solid var(--lavender-deep);
-  padding:24px 26px;
-  box-shadow:var(--shadow);
+  padding:26px 26px 26px 23px;
+  box-shadow:var(--shadow-sm);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
 }
+.who-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-left-color:var(--sage)}
 .who-card p{color:var(--gray);margin:0;font-size:.95rem}
+
+/* Mobile: smaller padding/type so two narrow cards stay comfortable to
+   read, same tightening pattern used for svc-card/why-item elsewhere */
+@media(max-width:639px){
+  .who-card{padding:16px 16px 16px 14px}
+  .who-card h3{font-size:1rem;margin-bottom:4px}
+  .who-card p{font-size:.85rem}
+}
 
 .steps{
   list-style:none;counter-reset:step;margin-top:28px;

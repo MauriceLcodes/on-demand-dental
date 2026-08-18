@@ -3,77 +3,210 @@
   background:var(--lavender-deep);
   color:var(--white);
   text-align:center;
-  padding:28px 0 24px;
+  padding:20px 0 40px;
+}
+.hero .container{position:relative;z-index:1}
+.hero::before{
+  content:"";
+  position:absolute;top:-30%;right:-6%;
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(255,255,255,.12) 0%,transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
 }
 .hero-logo{height:110px;width:auto;margin:0 auto 22px}
-.hero h1{letter-spacing:.05em;text-transform:uppercase}
-.hero .tagline{
-  font-size:1.15rem;color:rgba(255,255,255,.92);
-  max-width:560px;margin:10px auto 0;
+/* Bold brand name anchoring the hero — sized up so it reads as the visual
+   headline rather than a small label above the tagline */
+.hero h1{
+  font-size:2.1rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:#fff;
+  margin-bottom:14px;
 }
+.hero .tagline{
+  font-size:1.25rem;color:var(--white);
+  font-family:var(--font-serif);
+  max-width:600px;margin:0 auto;
+}
+.hero .hero-sub{
+  font-size:1.02rem;color:rgba(255,255,255,.85);
+  max-width:540px;margin:10px auto 0;
+}
+/* Small trust line instead of a hero button — the nav's Book Appointment
+   button already owns the primary call to action, so the hero just
+   introduces the practice and builds confidence */
+.hero-trust{
+  font-size:.88rem;color:rgba(255,255,255,.72);
+  font-weight:600;letter-spacing:.02em;
+  max-width:600px;
+  margin:12px auto 0;
+  text-align:center;
+}
+.hero .btn-outline{border-color:rgba(255,255,255,.7);color:#fff}
+.hero .btn-outline:hover{background:rgba(255,255,255,.14);border-color:#fff;color:#fff}
+/* Kept for other pages that may still reference it; unused on the home
+   hero now that the trust info lives in .hero-sub */
 .trust-badges{
   list-style:none;
   display:flex;flex-wrap:wrap;justify-content:center;
-  gap:12px 34px;margin-top:24px;
+  gap:10px 28px;margin-top:18px;
   color:var(--white);font-weight:600;
 }
 .trust-badges li::before{content:"✓ ";color:#BFE6B4}
 
-.alt-bg{background:var(--sage-light)}
-
 /* Keep side-by-side photos balanced with the text column */
 .split .rounded-img{max-height:440px;object-fit:cover}
 
-.services-preview{
-  display:grid;grid-template-columns:1fr;gap:18px;
-  margin:38px 0 34px;text-align:left;
+/* Tighten the hero-to-office transition on desktop only — mobile already
+   feels balanced since content naturally fills the width there. The
+   negative-margin "overlap" version of this caused the photo and text
+   column to misalign inside the grid, so this just trims the section's
+   own top padding instead. */
+@media(min-width:820px){
+  #office{padding-top:48px}
 }
-@media(min-width:640px){.services-preview{grid-template-columns:1fr 1fr}}
-@media(min-width:1080px){.services-preview{grid-template-columns:repeat(4,1fr)}}
-.svc-card{
-  background:var(--white);
-  border-radius:var(--radius);
-  border-top:4px solid var(--sage);
-  padding:24px 26px;
-  box-shadow:var(--shadow);
-  transition:transform .18s,box-shadow .18s;
+/* Mobile: trim the hero and the section that follows so they don't stack
+   into one big empty band — the desktop-only overlap trick above doesn't
+   apply here since mobile stacks the columns instead of sitting side by side */
+@media(max-width:640px){
+  .hero{padding:10px 0 36px}
+  .hero-logo{height:84px;margin:0 auto 14px}
+  .hero h1{font-size:1.5rem;letter-spacing:.06em;margin-bottom:10px}
+  .hero .hero-sub{margin-top:8px}
+  .hero-trust{margin-top:10px}
+  #office{padding-top:28px}
 }
-.svc-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(58,63,68,.15)}
-.svc-card p{color:var(--gray);font-size:.94rem;margin:0}
 
+/* Two columns at every width, same as the Why On Demand Dental cards —
+   keeps the two card grids on this page consistent with each other and
+   keeps the section shorter on phones */
+.services-preview{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  margin:42px 0 38px;text-align:left;
+}
+@media(min-width:640px){.services-preview{grid-template-columns:1fr 1fr;gap:26px}}
+@media(min-width:1080px){.services-preview{grid-template-columns:repeat(2,1fr);gap:28px}}
+.svc-card{
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(58,63,68,.07);
+  border-top:4px solid var(--sage);
+  padding:34px 36px 56px;
+  text-align:center;
+  box-shadow:var(--shadow-sm);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.svc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-top-color:var(--lavender-deep)}
+.svc-card h3{font-size:1.25rem;margin-bottom:10px}
+.svc-card p{color:var(--gray);font-size:.98rem;margin:0}
+/* Icon proof-of-concept — Dental Cleanings + Teeth Whitening for now. If
+   this reads well, duplicate for the remaining two service icons
+   (assets/icons/oral-hygiene.png, referrals.png) instead of the SVG
+   line-icon idea noted elsewhere.
+   v4: source art optically recentered (the sparkle's extra width was
+   pulling the tooth's visual weight left of the geometric center — fixed
+   by padding the canvas so the tooth itself, not the bounding box, sits
+   on center), sized by height instead of width so that recentering pad
+   doesn't shrink the tooth, and card copy switched to centered text to
+   read as one unit with the icon instead of a left-aligned block sitting
+   under a centered image. Extra vertical padding (34px/56px) so the
+   larger illustration doesn't feel cramped. */
+.svc-icon{
+  height:140px;width:auto;
+  display:block;margin:0 auto 20px;
+}
+
+/* Starting-at price line under each home-page service card, added when
+   pricing.html / services-pricing.html were built. Kept small/muted so it
+   reads as a supporting detail rather than competing with the card title. */
+.svc-price{
+  display:block;margin-top:10px;
+  font-family:var(--font-serif);font-weight:700;color:var(--sage-dark);
+  font-size:.92rem;
+}
+.svc-price.included{
+  font-family:var(--font-sans);font-weight:600;color:var(--gray);font-size:.8rem;
+}
+
+@media(max-width:639px){
+  .svc-card{padding:22px 18px 34px}
+  .svc-card h3{font-size:1.02rem;margin-bottom:6px}
+  .svc-card p{font-size:.83rem}
+  .svc-icon{height:110px;margin:0 auto 18px}
+  .svc-price{font-size:.82rem}
+  .svc-price.included{font-size:.74rem}
+}
+
+/* Two columns even on phones — four cards stacked in a single column made
+   this section scroll on forever, and each card's content is short enough
+   to work at half-width */
 .why-grid{
-  display:grid;grid-template-columns:1fr;gap:22px;margin-top:40px;
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:var(--sp-6);
 }
-@media(min-width:720px){.why-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:720px){.why-grid{grid-template-columns:1fr 1fr;gap:28px}}
+/* Tightened from 28px/28px/28px/25px — the short one-line copy in each card
+   left visible empty space at the original padding, especially once grid
+   stretch matches all four cards to the tallest one's height */
 .why-item{
-  background:var(--white);
-  border-radius:var(--radius);
-  padding:26px 28px;
-  box-shadow:var(--shadow);
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(58,63,68,.07);
+  border-left:4px solid transparent;
+  padding:22px 24px 22px 21px;
+  box-shadow:var(--shadow-sm);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
 }
+.why-item:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-left-color:var(--sage)}
 .why-item p{color:var(--gray);margin:0;font-size:.96rem}
+@media(max-width:719px){
+  .why-item{padding:18px 16px}
+  .why-item h3{font-size:1.02rem;margin-bottom:4px}
+  .why-item p{font-size:.85rem}
+}
 
 /* Testimonials */
 .quote-card{
-  max-width:640px;margin:36px auto 0;
-  background:var(--white);
-  border-radius:var(--radius);
+  max-width:640px;margin:var(--sp-4) auto 0;
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(58,63,68,.05);
   border-top:4px solid var(--lavender-deep);
-  padding:34px 38px;
-  box-shadow:var(--shadow);
+  padding:44px 40px 36px;
+  position:relative;overflow:hidden;
+  /* Layered shadow simulates a card stacked behind this one — depth without
+     an extra element that would get clipped by the horizontal-scroll row */
+  box-shadow:var(--shadow-sm),7px 7px 0 -3px rgba(123,111,168,.22);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
 }
-.quote-text{font-family:var(--font-serif);font-size:1.15rem;color:var(--ink);line-height:1.6}
+.quote-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg),9px 9px 0 -3px rgba(123,111,168,.28);border-top-color:var(--sage)}
+/* Large decorative opening quote mark, low-opacity so it reads as texture
+   rather than competing with the text */
+.quote-card::before{
+  content:"\201C";
+  font-family:var(--font-serif);
+  font-size:4.2rem;line-height:1;
+  color:rgba(123,111,168,.14);
+  position:absolute;top:2px;left:24px;
+  pointer-events:none;
+}
+.quote-stars{
+  color:var(--sage-dark);letter-spacing:3px;font-size:.9rem;
+  margin-bottom:14px;position:relative;
+}
+.quote-text{font-family:var(--font-serif);font-size:1.15rem;color:var(--ink);line-height:1.6;position:relative}
 .quote-who{color:var(--gray);font-weight:600;margin:0}
 
 /* Testimonials — horizontal swipe row */
 .quote-row{
-  display:flex;gap:20px;
+  display:flex;gap:20px;align-items:flex-start;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   padding:36px 4px 14px;
   scrollbar-width:thin;
+  cursor:grab;
 }
+.quote-row.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
 .quote-row .quote-card{
   flex:0 0 min(85%,460px);
   margin:0;
@@ -82,3 +215,146 @@
 }
 .scroll-hint{color:var(--gray);font-size:.85rem;margin-top:4px}
 /* 7 cards no longer fit on one screen, so the swipe hint stays visible at all widths */
+@media(max-width:640px){
+  .quote-card{padding:34px 24px 26px}
+  .quote-card::before{font-size:3.2rem;top:0;left:14px}
+}
+
+/* Testimonials sits directly above the CTA band. This section's own bottom
+   padding (from the shared "section" rule in global.css) was compounding
+   with the CTA band's top padding into an oversized gap below the "Swipe
+   to see more" hint, so trim it here rather than touching the shared rule. */
+.gradient-bg{padding-bottom:24px}
+@media(min-width:820px){.gradient-bg{padding-bottom:48px}}
+
+/* Office photo gallery — same horizontal-swipe pattern as testimonials,
+   sized to fill the .split column instead of the full section width */
+.photo-row{
+  display:flex;gap:14px;
+  overflow-x:auto;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+  padding:14px 16px 18px;
+  scrollbar-width:thin;
+  cursor:grab;
+}
+.photo-row.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+/* FALLBACK — original rule let each photo keep its natural aspect ratio,
+   which made the wide exterior shot and the tall ribbon-cutting shot render
+   at different heights in the same row. To revert, uncomment this and
+   comment out the block below.
+.photo-row .img-frame{
+  flex:0 0 92%;
+  scroll-snap-align:center;
+}
+.photo-row .img-frame .rounded-img{max-height:440px;object-fit:cover}
+*/
+
+/* FALLBACK — fixed-height AND fixed-width frame with object-fit:cover.
+   Worked fine when the row was only 2 landscape photos, but once portrait
+   phone photos (the office photo shoot) were added, cover forced a heavy
+   zoom on those to fill the wide/short box, cropping out most of each
+   shot. To revert, uncomment this and comment out the CURRENT block below.
+.photo-row .img-frame{
+  flex:0 0 92%;
+  height:380px;
+  scroll-snap-align:center;
+}
+.photo-row .img-frame .rounded-img{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+@media(max-width:640px){
+  .photo-row{padding:6px 6px 12px}
+  .photo-row .img-frame{height:300px}
+}
+*/
+
+/* FALLBACK — variable-width frame (height fixed, width auto to each
+   photo's natural aspect ratio). Solved the cropping problem but made
+   every card a different size, which read as uneven rather than a clean
+   gallery. To revert, uncomment this and comment out the CURRENT block.
+.photo-row .img-frame{
+  flex:0 0 auto;
+  height:380px;
+  scroll-snap-align:center;
+}
+.photo-row .img-frame .rounded-img{
+  height:100%;width:auto;
+  display:block;
+}
+@media(max-width:640px){
+  .photo-row{padding:6px 6px 12px}
+  .photo-row .img-frame{height:300px}
+}
+*/
+
+/* FALLBACK — same fixed box as above but object-fit:contain with a
+   letterbox background, to avoid cropping. Looked worse, not better: at a
+   92%-container-wide box, portrait photos shrank down to a thin strip
+   with huge empty color bars on both sides. To revert, uncomment this and
+   comment out the CURRENT block below.
+.photo-row .img-frame{
+  flex:0 0 92%;
+  height:380px;
+  scroll-snap-align:center;
+  background:var(--lavender-bg);
+}
+.photo-row .img-frame .rounded-img{
+  width:100%;height:100%;
+  object-fit:contain;
+}
+@media(max-width:640px){
+  .photo-row{padding:6px 6px 12px}
+  .photo-row .img-frame{height:300px}
+}
+*/
+
+/* CURRENT — normal photo-gallery card size instead of one giant
+   near-full-width photo per swipe. Every card is the same fixed size
+   (uniform gallery), and the box's aspect ratio (4:5) is close to most of
+   the photos' own portrait shape, so object-fit:cover only has to crop a
+   sliver off those — the couple of landscape shots crop in a bit more,
+   but nothing looks zoomed-in or leaves empty space. Multiple cards show
+   per screen instead of just one. */
+.photo-row .img-frame{
+  flex:0 0 220px;
+  aspect-ratio:4/5;
+  scroll-snap-align:center;
+}
+@media(min-width:640px){
+  .photo-row .img-frame{flex:0 0 300px}
+}
+.photo-row .img-frame .rounded-img{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+@media(max-width:640px){
+  .photo-row{padding:6px 6px 12px}
+}
+
+/* The exterior/storefront shot (first photo) is the establishing image for
+   the whole gallery — give it more visual weight with a wider card than
+   the uniform interior shots. Height is pinned to match the rest of the
+   row (275/375, same as every other card) instead of its old shorter
+   3:2-derived height, which left it visibly shorter than its neighbors
+   once the row got wider — only the width sets it apart now. */
+.photo-row .img-frame:first-child{
+  flex:0 0 340px;
+  height:275px;
+}
+@media(min-width:640px){
+  .photo-row .img-frame:first-child{flex:0 0 430px;height:375px}
+}
+
+/* Ribbon-cutting shot (second photo) — same treatment: wider card, but
+   height pinned to what it was under the uniform 4:5 box so it doesn't
+   grow taller than the rest of the row, just crops in a bit more on the
+   sides. */
+.photo-row .img-frame:nth-child(2){
+  flex:0 0 265px;
+  height:275px;
+}
+@media(min-width:640px){
+  .photo-row .img-frame:nth-child(2){flex:0 0 360px;height:375px}
+}

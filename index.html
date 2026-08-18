@@ -3,22 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>On Demand Dental | Dental Hygiene Care in Woodland Hills & Mobile Visits</title>
-<meta name="description" content="On Demand Dental provides quality dental hygiene care with accessibility and compassion, in our Woodland Hills office or through mobile visits brought to you. Se habla español.">
+<title>On Demand Dental | Dental Hygiene Care in Woodland Hills & Concierge Visits</title>
+<meta name="description" content="On Demand Dental provides quality dental hygiene care with accessibility and compassion, in our Woodland Hills office or through concierge visits brought to you. Se habla español.">
+<link rel="canonical" href="https://ondemanddental.net/">
+<link rel="alternate" hreflang="en" href="https://ondemanddental.net/">
+<link rel="alternate" hreflang="es" href="https://ondemanddental.net/es/">
+<link rel="alternate" hreflang="x-default" href="https://ondemanddental.net/">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/home.css">
 <link rel="icon" type="image/png" href="images/logo.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="On Demand Dental | Woodland Hills & Mobile Visits">
+<meta property="og:title" content="On Demand Dental | Woodland Hills & Concierge Visits">
 <meta property="og:description" content="Quality dental hygiene care with accessibility and compassion, in our office or brought to you. Se habla español.">
-<!-- TODO: after connecting the custom domain, change og:image to the absolute URL, e.g. https://yourdomain.com/images/logo.png -->
-<meta property="og:image" content="/images/logo.png">
+<meta property="og:image" content="https://ondemanddental.net/images/logo.png">
+<meta property="og:url" content="https://ondemanddental.net/">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Dentist",
+  "@type": ["LocalBusiness", "MedicalBusiness"],
   "name": "On Demand Dental",
-  "description": "Dental hygiene care in Woodland Hills and mobile visits at home, in assisted living, and skilled nursing facilities.",
+  "description": "Dental hygiene care in Woodland Hills and concierge visits at home, in assisted living, and skilled nursing facilities.",
   "telephone": "+1-818-821-5065",
   "email": "ondemanddental@gmail.com",
   "address": {
@@ -31,7 +35,7 @@
   },
   "areaServed": "San Fernando Valley",
   "availableLanguage": ["English", "Spanish"],
-  "founder": {"@type": "Person", "name": "Gloria Morejon"}
+  "founder": {"@type": "Person", "name": "Gloria Morejon", "jobTitle": "BSDH, RDHAP"}
 }
 </script>
 </head>
@@ -42,15 +46,16 @@
     <a href="index.html" class="brand" aria-label="On Demand Dental home">
       <img src="images/logo.png" alt="On Demand Dental logo, purple tooth with toothbrush">
     </a>
-    <a href="es/index.html" class="btn btn-outline btn-sm header-lang" lang="es">Español</a>
+    <a href="es/index.html" class="btn btn-outline btn-sm header-lang" lang="es">Para Español</a>
     <a href="book.html" class="btn btn-sm header-cta">Book Appointment</a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav class="nav-links" aria-label="Main navigation">
       <a href="index.html" class="active">Home</a>
-      <a href="services.html">Services</a>
-      <a href="mobile-care.html">Mobile Care</a>
+      <a href="services-pricing.html">Services &amp; Pricing</a>
+      <a href="mobile-care.html">Our Mission</a>
       <a href="about.html">About</a>
-      <a href="es/index.html" class="btn btn-outline btn-sm" lang="es">Español</a>
+      <a href="#contact">Contact</a>
+      <a href="es/index.html" class="btn btn-outline btn-sm" lang="es">Para Español</a>
       <a href="book.html" class="btn btn-sm">Book Appointment</a>
     </nav>
   </div>
@@ -62,19 +67,27 @@
   <section class="hero">
     <div class="container">
       <h1>On Demand Dental</h1>
-      <p class="tagline">Providing Quality Dental Hygiene Care with Accessibility and Compassion</p>
-      <ul class="trust-badges">
-        <li lang="es">Se habla español</li>
-        <li>Mobile visits available</li>
-        <li>Flexible scheduling</li>
-      </ul>
+      <p class="tagline">Dental Hygiene Designed Around You.</p>
+      <p class="hero-sub">Preventive care in our Woodland Hills office or through concierge service.</p>
     </div>
   </section>
 
   <!-- Office -->
   <section id="office">
     <div class="container split">
-      <img src="images/office.jpg" alt="Exterior of the On Demand Dental office in Woodland Hills, California" class="rounded-img">
+      <div>
+        <div class="photo-row">
+          <div class="img-frame"><img src="images/office-web.jpg" alt="Exterior of the On Demand Dental office in Woodland Hills, California" class="rounded-img"></div>
+          <div class="img-frame"><img src="images/ribbon-cutting-web.jpg" alt="Gloria Morejon celebrating the grand opening of the On Demand Dental treatment room" class="rounded-img"></div>
+          <div class="img-frame"><img src="images/office-tooth-mascots-web.jpg" alt="Playful tooth mascots and a dental model on a shelf in the On Demand Dental office" class="rounded-img"></div>
+          <div class="img-frame"><img src="images/office-chair-decal-web.jpg" alt="On Demand Dental hygiene chair beneath a &quot;brush, floss, smile&quot; wall decal" class="rounded-img"></div>
+          <div class="img-frame"><img src="images/office-desk-chair-web.jpg" alt="On Demand Dental treatment room, hygiene chair and desk" class="rounded-img"></div>
+          <div class="img-frame"><img src="images/office-shelf-styling-web.jpg" alt="Styled shelves in the On Demand Dental office with dental care products and decor" class="rounded-img"></div>
+          <div class="img-frame"><img src="images/office-reading-nook-web.jpg" alt="Cozy seating nook in the On Demand Dental office" class="rounded-img"></div>
+          <div class="img-frame"><img src="images/office-cow-photo-web.jpg" alt="Framed highland cow photo on a shelf, flanked by ceramic tooth planters, in the On Demand Dental office" class="rounded-img"></div>
+        </div>
+        <p class="scroll-hint">Swipe to see inside →</p>
+      </div>
       <div>
         <span class="eyebrow">Our Office</span>
         <h2>A calm, comfortable setting in Woodland Hills</h2>
@@ -84,40 +97,11 @@
     </div>
   </section>
 
-  <!-- Mobile care preview -->
-  <section class="alt-bg">
-    <div class="container split">
-      <div>
-        <span class="eyebrow">Mobile Dental Care</span>
-        <h2>We bring the care to you</h2>
-        <p>For patients who can't easily visit an office, we deliver professional dental hygiene care at home, in assisted living, skilled nursing facilities, and other community settings.</p>
-        <p>Mobile care supports individuals with mobility limitations, physical or cognitive disabilities, anxiety, or other circumstances that make in-office visits difficult.</p>
-        <a class="btn" href="mobile-care.html">Learn About Mobile Care</a>
-      </div>
-      <img src="images/mobile-care.jpg" alt="Dental hygienist providing mobile care to a patient at home" class="rounded-img" onerror="this.outerHTML='&lt;div class=&quot;img-placeholder&quot;&gt;Mobile care photo&lt;/div&gt;'">
-    </div>
-  </section>
-
-  <!-- Services preview -->
-  <section>
-    <div class="container center">
-      <span class="eyebrow">What We Offer</span>
-      <h2>Services</h2>
-      <div class="services-preview">
-        <a href="services.html#cleanings" class="svc-card"><h3>Dental Cleanings</h3><p>Gentle, thorough care for healthy teeth and gums.</p></a>
-        <a href="services.html#whitening" class="svc-card"><h3>Teeth Whitening</h3><p>Professional whitening for a brighter, more confident smile.</p></a>
-        <a href="services.html#hygiene-instructions" class="svc-card"><h3>Oral Hygiene Instructions</h3><p>Personalized guidance for a healthier smile between visits.</p></a>
-        <a href="services.html#referrals" class="svc-card"><h3>Referrals to Local Dentists</h3><p>Trusted referrals when treatment beyond hygiene is needed.</p></a>
-      </div>
-      <a class="btn btn-outline" href="services.html">View All Services</a>
-    </div>
-  </section>
-
   <!-- Why choose -->
   <section class="alt-bg">
     <div class="container">
       <div class="center"><span class="eyebrow">Why On Demand Dental</span>
-      <h2>Care built around you</h2></div>
+      <h2>Thoughtful care, every step of the way</h2></div>
       <div class="why-grid">
         <div class="why-item"><h3>Accessibility first</h3><p>In-office or at your bedside, we bring care to wherever patients are.</p></div>
         <div class="why-item"><h3>Compassionate approach</h3><p>Unhurried visits with a hygienist who listens and explains.</p></div>
@@ -127,39 +111,75 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- Services preview -->
   <section>
     <div class="container center">
+      <span class="eyebrow">What We Offer</span>
+      <h2>Services</h2>
+      <div class="services-preview">
+        <a href="services-pricing.html#cleanings" class="svc-card"><img src="assets/icons/dental-cleaning.png" alt="Dental Cleaning Icon" class="svc-icon"><h3>Dental Cleanings</h3><p>Gentle, thorough care for healthy teeth and gums.</p></a>
+        <a href="services-pricing.html#whitening" class="svc-card"><img src="assets/icons/teeth-whitening.png" alt="Teeth Whitening Icon" class="svc-icon"><h3>Teeth Whitening</h3><p>Professional whitening for a brighter, more confident smile.</p></a>
+        <a href="services-pricing.html#hygiene-instructions" class="svc-card"><img src="assets/icons/oral-hygiene.png" alt="Oral Hygiene Instructions Icon" class="svc-icon"><h3>Oral Hygiene Instructions</h3><p>Personalized guidance for a healthier smile between visits.</p></a>
+        <a href="services-pricing.html#referrals" class="svc-card"><img src="assets/icons/referrals.png" alt="Referrals to Local Dentists Icon" class="svc-icon"><h3>Referrals to Local Dentists</h3><p>Trusted referrals when treatment beyond hygiene is needed.</p></a>
+      </div>
+      <a class="btn btn-outline" href="services-pricing.html">View All Services</a>
+    </div>
+  </section>
+
+  <!-- Mobile care preview -->
+  <section class="alt-bg">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Concierge Dental Care</span>
+        <h2>We bring the care to you</h2>
+        <p>For patients who prefer not to visit an office, we bring concierge dental hygiene care directly to you, at home, in assisted living, in skilled nursing facilities, or wherever suits you best.</p>
+        <p>Our concierge service is built for patients who value convenience and comfort, along with those managing mobility limitations, physical or cognitive disabilities, anxiety, or other circumstances that make in-office visits difficult.</p>
+        <a class="btn" href="mobile-care.html">Learn About Concierge Care</a>
+      </div>
+      <div class="img-frame"><img src="images/mobile-care-web.jpg" alt="Dental hygienist providing concierge care to a patient at home" class="rounded-img" onerror="this.outerHTML='&lt;div class=&quot;img-placeholder&quot;&gt;Concierge care photo&lt;/div&gt;'"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="gradient-bg">
+    <div class="container center">
       <span class="eyebrow">Testimonials</span>
-      <h2>What patients say</h2>
+      <h2>What patients are saying</h2>
       <div class="quote-row">
         <div class="quote-card">
-          <p class="quote-text">"Gloria is patient, gentle, and thorough. My teeth have never felt cleaner, and she explained everything as she went, which made the whole visit easy."</p>
-          <p class="quote-who">— Maurice Lopez</p>
+          <p class="quote-stars" aria-hidden="true">★★★★★</p>
+          <p class="quote-text">"Great experience from start to finish. Gloria's office has a really calming vibe, which helped a ton since dental visits usually make me anxious. She checked in with me multiple times throughout to make sure I was comfortable and kept asking if there was anything she could do to make it easier for me. Everything was explained clearly before it happened, so there were no surprises, and I never felt rushed through anything. Definitely recommend if you're someone who normally dreads going to the dentist."</p>
+          <p class="quote-who">— Maurice L.</p>
         </div>
         <div class="quote-card">
-          <p class="quote-text">"My experience with Gloria has been great. She is a very thorough hygienist with a wealth of knowledge and calming energy. I walk into every appointment with a million questions and she has never made me feel rushed or dismissed. She answers every question with a lot of thought, regardless of how busy she is. I walk away feeling informed and taken care of every time!"</p>
-          <p class="quote-who">— Chantell C.</p>
-        </div>
-        <div class="quote-card">
+          <p class="quote-stars" aria-hidden="true">★★★★★</p>
           <p class="quote-text">"Gloria is the all-time best! It is clear that she loves her job and will stop at nothing to make sure you get the best care possible. She is thorough, patient, kind, capable, caring, and goes above and beyond every visit."</p>
           <p class="quote-who">— Riley C.</p>
         </div>
         <div class="quote-card">
-          <p class="quote-text">"Gloria is the most efficient dental hygienist I've been lucky to experience. I have only had horrible experiences throughout my life with dentists and dental hygienists. But the comfort she brings to my appointment and educational tips she gives me, especially with flossing, are well worth a visit. I genuinely look forward to my cleanings throughout the year."</p>
-          <p class="quote-who">— Amberly M.</p>
+          <p class="quote-stars" aria-hidden="true">★★★★★</p>
+          <p class="quote-text">"The cleaning technician Gloria is always wonderful to see. She makes sure to communicate everything throughout the visit and genuinely feels like she cares about my dental hygiene and progress. She is also awesome to talk to and gives great dental advice and tips!"</p>
+          <p class="quote-who">— Patrick O.</p>
         </div>
         <div class="quote-card">
+          <p class="quote-stars" aria-hidden="true">★★★★★</p>
           <p class="quote-text">"My dental hygienist was Gloria, and she is without doubt the best hygienist who has ever worked on my teeth (I needed a deep cleaning &amp; irrigation). She's sensitive, extremely thorough, and a delight, never rushed through anything. She has an especially 'light touch' with the novocaine shots...not painful the way she handled them."</p>
           <p class="quote-who">— Larry B.</p>
         </div>
         <div class="quote-card">
-          <p class="quote-text">"The cleaning technician Gloria is always wonderful to see here. She makes sure to communicate everything throughout the visit and genuinely feels like she cares about my dental hygiene and progress. She is also awesome to talk to and gives great dental advice and tips! Would very much recommend her to anyone looking to come to this location!"</p>
-          <p class="quote-who">— Patrick O.</p>
+          <p class="quote-stars" aria-hidden="true">★★★★★</p>
+          <p class="quote-text">"Gloria is the most efficient dental hygienist I've been lucky to experience. I have only had horrible experiences throughout my life with dentists and dental hygienists. But the comfort she brings to my appointment and educational tips she gives me, especially with flossing, are well worth a visit. I genuinely look forward to my cleanings throughout the year."</p>
+          <p class="quote-who">— Amberly M.</p>
         </div>
         <div class="quote-card">
-          <p class="quote-text">"I recently had my 3rd cleaning with Dr. Gloria and it's always so awesome and actually enjoyable! Yes I said it! Her cleaning is so thorough and caring! I can say she eradicated any original soreness I had before. I'm 100% more confident and proud of the wellness of my mouth now! Thanks to Dr. Gloria Morejon, I am grateful to have her help and skills!"</p>
+          <p class="quote-stars" aria-hidden="true">★★★★★</p>
+          <p class="quote-text">"I recently had my 3rd cleaning with Gloria and it's always so awesome and actually enjoyable! Yes I said it! Her cleaning is so thorough and caring! I can say she eradicated any original soreness I had before. I'm 100% more confident and proud of the wellness of my mouth now! Thanks to Gloria Morejon, I am grateful to have her help and skills!"</p>
           <p class="quote-who">— Anonymous</p>
+        </div>
+        <div class="quote-card">
+          <p class="quote-stars" aria-hidden="true">★★★★★</p>
+          <p class="quote-text">"My experience with Gloria has been great. She is a very thorough hygienist with a wealth of knowledge and calming energy. I walk into every appointment with a million questions and she has never made me feel rushed or dismissed. She answers every question with a lot of thought, regardless of how busy she is. I walk away feeling informed and taken care of every time!"</p>
+          <p class="quote-who">— Chantell C.</p>
         </div>
       </div>
       <p class="scroll-hint">Swipe to see more →</p>
@@ -170,7 +190,7 @@
   <section class="cta-band">
     <div class="container">
       <h2>Ready to schedule your visit?</h2>
-      <p>Office or mobile, we'll find a time that works for you.</p>
+      <p>Office or concierge, we'll find a time that works for you.</p>
       <a class="btn" href="book.html">Book Appointment</a>
     </div>
   </section>
@@ -189,7 +209,7 @@
         </a>
       </address>
     </div>
-    <div>
+    <div id="contact">
       <h4>Contact</h4>
       <a href="tel:+18188215065" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 818-821-5065</a><br>
       <a href="mailto:ondemanddental@gmail.com" class="contact-line"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> ondemanddental@gmail.com</a><br>
@@ -200,12 +220,17 @@
       <h4 lang="es">Se habla español</h4>
       <a href="es/index.html" lang="es">Ver sitio en español</a>
     </div>
+    <div>
+      <h4>Dental Hygiene Resources</h4>
+      <a href="blog/index.html">Blog</a>
+    </div>
   </div>
   <div class="container footer-bottom">© 2026 On Demand Dental. All rights reserved. · <a href="privacy.html">Privacy Policy</a></div>
 </footer>
 
 <a href="tel:+18188215065" class="phone-fab" aria-label="Call On Demand Dental at 818-821-5065">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>
+  <span class="phone-fab-label">Call</span>
 </a>
 
 <script src="js/main.js"></script>

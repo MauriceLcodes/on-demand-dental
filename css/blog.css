@@ -1,0 +1,60 @@
+/* Blog styles — listing page + individual post pages */
+
+/* ---------- Listing page ---------- */
+.blog-page{padding:var(--sp-6) 0 var(--sp-7)}
+@media(min-width:820px){.blog-page{padding:var(--sp-7) 0}}
+
+.blog-grid{
+  display:grid;grid-template-columns:1fr;gap:22px;
+  max-width:820px;margin:0 auto;
+}
+@media(min-width:720px){.blog-grid{grid-template-columns:1fr 1fr;gap:26px}}
+
+.blog-card{
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(58,63,68,.07);
+  border-top:4px solid var(--sage);
+  padding:28px 26px;
+  box-shadow:var(--shadow-sm);
+  text-align:left;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.blog-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-top-color:var(--lavender-deep)}
+.blog-card h2{font-size:1.2rem;margin-bottom:10px;color:var(--ink)}
+.blog-card p{color:var(--gray);font-size:.95rem;margin:0 0 14px}
+.blog-card .text-link{display:inline-block;font-size:.9rem}
+
+@media(max-width:639px){
+  .blog-card{padding:20px 18px}
+  .blog-card h2{font-size:1.05rem;margin-bottom:6px}
+  .blog-card p{font-size:.88rem;margin-bottom:10px}
+}
+
+/* ---------- Individual post ---------- */
+.blog-post{max-width:720px}
+.blog-post h2{font-size:1.15rem;margin:var(--sp-4) 0 6px;color:var(--ink)}
+.blog-post p{color:var(--gray);max-width:none}
+.blog-post p:first-of-type{font-size:1.05rem}
+.blog-post .blog-cta-line{
+  margin-top:var(--sp-4);
+  color:var(--ink);
+  font-weight:500;
+}
+/* FALLBACK — sage-dark at 700 weight read as too heavy/dark against the
+   light background ("yelling"). First attempt swapped to --sage, but sage
+   and sage-dark are close enough in tone that it barely read as different.
+   Second attempt used lavender-deep, then lavender-bright (a more saturated
+   purple) — both still too close to the site's cool palette to pop on
+   mobile. Now using --terracotta, a warm color outside the lavender/sage
+   family entirely, plus a permanent underline so it reads as a link by
+   shape too, not just color. */
+.blog-post .blog-cta-line a{color:var(--terracotta);font-weight:600;text-decoration:underline}
+.blog-post .blog-cta-line a:hover{color:var(--sage-dark)}
+
+/* Back-to-blog link above the post title */
+.blog-back{
+  display:inline-block;margin-bottom:var(--sp-2);
+  color:rgba(255,255,255,.85);font-weight:600;font-size:.92rem;
+}
+.blog-back:hover{color:#fff;text-decoration:underline}
