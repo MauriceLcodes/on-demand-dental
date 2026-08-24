@@ -1,5 +1,12 @@
 // On Demand Dental — shared scripts
 document.addEventListener('DOMContentLoaded', function () {
+
+  // Fire a GA4 event if analytics is loaded; no-op otherwise.
+  function trackEvent(name, params) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, params || {});
+    }
+  }
   // Mobile navigation toggle
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
@@ -85,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if (!response.ok) {
             throw new Error('Form submission failed with status ' + response.status);
           }
+          trackEvent('appointment_request_submitted', { form_name: form.getAttribute('name') || '' });
           window.location.href = form.getAttribute('data-redirect') || '/thanks.html';
         })
         .catch(function () {
@@ -94,6 +102,23 @@ document.addEventListener('DOMContentLoaded', function () {
           }
           alert('Sorry, something went wrong submitting the form. Please call us at 818-821-5065, or try again.');
         });
+    });
+  });
+
+  // Phone number click tracking
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      trackEvent('phone_call_click', { page: window.location.pathname });
+    });
+  });
+
+  // Language toggle click tracking (EN <-> ES links)
+  document.querySelectorAll('a[lang="es"], a[lang="en"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      trackEvent('language_toggle', {
+        to_language: link.getAttribute('lang'),
+        page: window.location.pathname
+      });
     });
   });
 
