@@ -1,11 +1,23 @@
 /* Book Appointment page styles */
 .book-section{padding-top:56px}
+/* Two columns again once there's room: hours/parking/map on the left,
+   form on the right. Single column (and centered, since the form is now
+   the only thing in it) below that width. */
 .book-grid{
   display:grid;grid-template-columns:1fr;gap:44px;align-items:start;
+  max-width:640px;margin:0 auto;
 }
-@media(min-width:880px){.book-grid{grid-template-columns:1fr 1.1fr;gap:60px}}
+@media(min-width:880px){
+  .book-grid{grid-template-columns:1fr 1.1fr;gap:60px;max-width:none;margin:0}
+}
 
 .book-info p{color:var(--gray)}
+
+/* Hours + parking + language + map, now sitting under the form instead of
+   in their own address block, since the full Visit Options/Contact column
+   was removed. */
+.book-details{margin-top:8px}
+.hours-line{color:var(--gray);font-size:.95rem;margin:0}
 
 /* Parking note under the Contact address block. This section has a light
    background (unlike the dark site footer), so it needs its own readable

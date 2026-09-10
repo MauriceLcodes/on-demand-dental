@@ -333,28 +333,31 @@
   .photo-row{padding:6px 6px 12px}
 }
 
-/* The exterior/storefront shot (first photo) is the establishing image for
-   the whole gallery — give it more visual weight with a wider card than
-   the uniform interior shots. Height is pinned to match the rest of the
-   row (275/375, same as every other card) instead of its old shorter
-   3:2-derived height, which left it visibly shorter than its neighbors
-   once the row got wider — only the width sets it apart now. */
-.photo-row .img-frame:first-child{
+/* The exterior/storefront shot is the establishing image for the whole
+   gallery — give it more visual weight with a wider card than the uniform
+   interior shots. Height is pinned to match the rest of the row (275/375,
+   same as every other card) instead of its old shorter 3:2-derived height,
+   which left it visibly shorter than its neighbors once the row got wider
+   — only the width sets it apart now.
+   Switched from :first-child to an explicit class when the Gloria headshot
+   was added as the new opening slide, so this sizing stays attached to the
+   exterior photo itself regardless of which position it sits in. */
+.photo-row .img-frame.wide-card{
   flex:0 0 340px;
   height:275px;
 }
 @media(min-width:640px){
-  .photo-row .img-frame:first-child{flex:0 0 430px;height:375px}
+  .photo-row .img-frame.wide-card{flex:0 0 430px;height:375px}
 }
 
-/* Ribbon-cutting shot (second photo) — same treatment: wider card, but
-   height pinned to what it was under the uniform 4:5 box so it doesn't
-   grow taller than the rest of the row, just crops in a bit more on the
-   sides. */
-.photo-row .img-frame:nth-child(2){
+/* Ribbon-cutting shot — same treatment: wider card, but height pinned to
+   what it was under the uniform 4:5 box so it doesn't grow taller than the
+   rest of the row, just crops in a bit more on the sides. Also switched
+   from :nth-child(2) to an explicit class for the same reason as above. */
+.photo-row .img-frame.ribbon-card{
   flex:0 0 265px;
   height:275px;
 }
 @media(min-width:640px){
-  .photo-row .img-frame:nth-child(2){flex:0 0 360px;height:375px}
+  .photo-row .img-frame.ribbon-card{flex:0 0 360px;height:375px}
 }

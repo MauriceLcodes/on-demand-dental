@@ -48,6 +48,94 @@
     padding:8px 16px;border-radius:999px;
   }
 
+  /* Pricing at a Glance — a compact price list above the detailed service
+     cards below, so patients can scan prices without reading a
+     description twice (the cards below already cover what each service
+     includes). CSS multi-column layout splits the 10 rows into two
+     columns of 5 on desktop with a hairline column-rule as the divider,
+     and collapses to a single column with no scroll on mobile — no grid
+     bookkeeping needed since the rows are equal height. */
+  .pricing-glance{padding:var(--sp-5) 0 var(--sp-4)}
+  @media(min-width:820px){.pricing-glance{padding:var(--sp-6) 0 var(--sp-5)}}
+  /* FALLBACK — .pricing-glance-sub: styled the "Precios claros..." subhead
+     under the Pricing at a Glance heading. Removed along with the eyebrow
+     to leave just the heading above the price list; kept here in case a
+     supporting line is added back later.
+  .pricing-glance-sub{
+    color:var(--gray);font-size:1.02rem;max-width:620px;margin:0 auto 38px;
+  }
+  */
+  .price-list-wrap{max-width:1050px;margin:0 auto 24px}
+  /* Two columns at every width, including phones — narrower gap/padding
+     and smaller type down here so the two columns have room to breathe;
+     both scale back up at the sm/md breakpoints below. A soft sage/
+     lavender bar along the top edge and a barely-there ivory-sage tint
+     give the card its own identity instead of reading as a plain white
+     spreadsheet. */
+  .price-list{
+    position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#FFFFFF 0%,#F8FAF6 100%);
+    border-radius:24px;
+    border:1px solid rgba(58,63,68,.06);box-shadow:var(--shadow-sm);
+    padding:4px 12px;
+    columns:2;column-gap:16px;column-rule:1px solid rgba(58,63,68,.06);
+  }
+  .price-list::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--sage) 0%,var(--lavender-deep) 100%);
+  }
+  @media(min-width:480px){
+    .price-list{padding:4px 20px;column-gap:28px}
+  }
+  @media(min-width:720px){
+    .price-list{column-gap:48px;padding:8px 32px}
+  }
+  .price-row-compact{
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;
+    gap:2px 10px;
+    padding:14px 4px;border-bottom:1px solid rgba(58,63,68,.055);
+    break-inside:avoid;
+  }
+  .price-row-compact:last-child{border-bottom:0}
+  .price-row-compact.last-in-col{border-bottom:0}
+  .price-row-compact:nth-child(even){background:rgba(99,121,91,.035)}
+  .price-row-compact-name{
+    font-weight:600;color:var(--ink);font-size:.82rem;line-height:1.3;
+    flex:1 1 auto;min-width:0;
+  }
+  .price-row-compact-price{
+    font-family:var(--font-serif);font-weight:800;color:var(--sage-dark);
+    font-size:.94rem;white-space:nowrap;text-align:right;
+  }
+  .price-row-compact-price.included{
+    font-family:var(--font-sans);font-weight:600;font-size:.72rem;color:var(--gray);
+  }
+  .price-row-compact-price .price-note-sm{
+    display:block;font-family:var(--font-sans);font-weight:600;
+    font-size:.6rem;color:var(--gray);letter-spacing:0;margin-top:2px;
+  }
+  @media(min-width:600px){
+    .price-row-compact{padding:18px 4px}
+    .price-row-compact-name{font-size:.94rem}
+    .price-row-compact-price{font-size:1.04rem}
+    .price-row-compact-price.included{font-size:.8rem}
+    .price-row-compact-price .price-note-sm{font-size:.64rem}
+  }
+  /* Desktop — service name on the left, a dedicated centered price
+     column on the right (not floated against the far edge), so every
+     price and qualifier lines up down the column regardless of how long
+     the service name next to it is. */
+  @media(min-width:720px){
+    .price-row-compact{padding:20px 4px;flex-wrap:nowrap}
+    .price-row-compact-name{font-size:.98rem;text-align:left}
+    .price-row-compact-price{
+      flex:0 0 112px;width:112px;
+      font-size:1.12rem;text-align:center;
+    }
+    .price-row-compact-price.included{font-size:.85rem}
+    .price-row-compact-price .price-note-sm{font-size:.66rem;text-align:center}
+  }
+
   .payment-grid{
     display:grid;grid-template-columns:1fr;gap:16px;max-width:760px;margin:0 auto;
   }
@@ -74,7 +162,7 @@
 <header class="site-header">
   <div class="container nav">
     <a href="index.html" class="brand" aria-label="Inicio de On Demand Dental">
-      <img loading="eager" width="677" height="566" src="../images/logo.webp" alt="Logotipo de On Demand Dental, diente morado con cepillo de dientes">
+      <img loading="eager" width="220" height="184" src="../images/logo.webp" alt="Logotipo de On Demand Dental, diente morado con cepillo de dientes">
     </a>
     <a href="../services-pricing.html" class="btn btn-outline btn-sm header-lang" lang="en">For English</a>
     <a href="book.html" class="btn btn-sm header-cta">Reservar Cita</a>
@@ -100,10 +188,72 @@
     </div>
   </section>
 
+  <section class="pricing-glance no-reveal">
+    <div class="container">
+      <h2 class="center">Precios en un Vistazo</h2>
+
+      <div class="price-list-wrap">
+        <div class="price-list">
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Profilaxis para Adultos</span>
+            <span class="price-row-compact-price">$125</span>
+          </div>
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Profilaxis Infantil (Menores de 14)</span>
+            <span class="price-row-compact-price">$75</span>
+          </div>
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Mantenimiento Periodontal</span>
+            <span class="price-row-compact-price">$150</span>
+          </div>
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Raspado y Alisado Radicular</span>
+            <span class="price-row-compact-price">$150<span class="price-note-sm">Por cuadrante</span></span>
+          </div>
+
+          <div class="price-row-compact last-in-col">
+            <span class="price-row-compact-name">Raspado en Presencia de Gingivitis</span>
+            <span class="price-row-compact-price">$180</span>
+          </div>
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Aplicación de Barniz de Flúor</span>
+            <span class="price-row-compact-price">$30</span>
+          </div>
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Sellantes (Por Diente)</span>
+            <span class="price-row-compact-price">$35<span class="price-note-sm">Por diente</span></span>
+          </div>
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Instrucción de Higiene Oral</span>
+            <span class="price-row-compact-price included">Incluido</span>
+          </div>
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Tarifa de Traslado para Visitas Concierge</span>
+            <span class="price-row-compact-price">$25–$75<span class="price-note-sm">Según la distancia</span></span>
+          </div>
+
+          <div class="price-row-compact">
+            <span class="price-row-compact-name">Blanqueamiento Dental — En Consultorio</span>
+            <span class="price-row-compact-price">$350</span>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="price-disclaimer-wrap"><span class="price-disclaimer">ⓘ Los precios están sujetos a cambio sin previo aviso.</span></p>
+    </div>
+  </section>
+
   <section class="services-page no-reveal">
     <div class="container">
-
-      <p class="price-disclaimer-wrap"><span class="price-disclaimer">ⓘ Los precios están sujetos a cambio sin previo aviso</span></p>
 
       <div class="services-grid">
 
@@ -181,7 +331,7 @@
         </div>
 
         <div class="svc-card" id="fluoride">
-          <h2>Aplicación de Flúor</h2>
+          <h2>Aplicación de Barniz de Flúor</h2>
           <p>El flúor tópico es un tratamiento que se aplica a los dientes para ayudar a fortalecer el esmalte y prevenir caries. También ayuda con la sensibilidad dental. El flúor funciona remineralizando el esmalte e inhibiendo el metabolismo bacteriano, lo que reduce el crecimiento de la placa bacteriana. Este tratamiento se recomienda para pacientes con alto riesgo de caries, sensibilidad dental y recesión de encías.</p>
           <div class="svc-price-line">
             <span class="svc-price-label">Adicional</span>
@@ -191,12 +341,13 @@
 
         <div class="svc-card" id="whitening">
           <div class="svc-photo-wrap">
-            <img loading="lazy" width="1000" height="800" src="../assets/services-pictures/whitening.webp" alt="Primer plano de dientes blanqueados" class="svc-photo svc-photo-whitening">
+            <img loading="lazy" width="1100" height="733" src="../assets/services-pictures/teeth-picture.webp" alt="Paciente sonriendo mientras observa sus dientes blanqueados en un espejo de mano durante su cita dental" class="svc-photo svc-photo-whitening">
           </div>
           <h2>Blanqueamiento Dental Profesional</h2>
           <p>Ilumine su sonrisa con una experiencia de blanqueamiento dental personalizada, diseñada en torno a su comodidad y sus objetivos. El blanqueamiento profesional puede ayudar a reducir la apariencia de manchas causadas por el café, el té, el vino, el tabaco y hábitos cotidianos, revelando una sonrisa renovada y más radiante.</p>
-          <div class="svc-price-line included">
-            <span class="svc-price-amount">Referencia, pregunte por detalles</span>
+          <div class="svc-price-line">
+            <span class="svc-price-amount">$350</span>
+            <span class="svc-price-label">En consultorio</span>
           </div>
         </div>
 

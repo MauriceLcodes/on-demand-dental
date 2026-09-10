@@ -135,7 +135,7 @@ FALLBACK — 2-col/3-col card grid:
    crop anchor keeps the relevant part of each photo in frame instead of
    relying on a one-size-fits-all center crop. */
 .svc-photo-cleaning{object-position:50% 78%}
-.svc-photo-whitening{object-position:50% 38%}
+.svc-photo-whitening{object-position:62% 35%}
 .svc-photo-assessment{object-position:50% 32%}
 
 /* Mobile: smaller padding/type so two narrow cards stay comfortable to read,
