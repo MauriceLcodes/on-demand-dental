@@ -51,10 +51,14 @@
   /* Pricing at a Glance — a compact price list above the detailed service
      cards below, so patients can scan prices without reading a
      description twice (the cards below already cover what each service
-     includes). CSS multi-column layout splits the 10 rows into two
-     columns of 5 on desktop with a hairline column-rule as the divider,
-     and collapses to a single column with no scroll on mobile — no grid
-     bookkeeping needed since the rows are equal height. */
+     includes). Real CSS grid (not multi-column) splits the 10 rows into
+     two columns of 5, auto-flowing down the first column then the
+     second — a plain 2-column `columns:2` layout let row heights drift
+     independently per column (a wrapping service name in one column
+     didn't grow its counterpart in the other), so the alternating row
+     tint looked like mismatched, unevenly-sized blocks on phones. Grid
+     rows are always as tall as their tallest cell, so every row lines up
+     the same height in both columns at any width. */
   .pricing-glance{padding:var(--sp-5) 0 var(--sp-4)}
   @media(min-width:820px){.pricing-glance{padding:var(--sp-6) 0 var(--sp-5)}}
   /* FALLBACK — .pricing-glance-sub: styled the "Straightforward pricing..."
@@ -78,7 +82,8 @@
     border-radius:24px;
     border:1px solid rgba(58,63,68,.06);box-shadow:var(--shadow-sm);
     padding:4px 12px;
-    columns:2;column-gap:16px;column-rule:1px solid rgba(58,63,68,.06);
+    display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:column;
+    grid-template-rows:repeat(5,auto);column-gap:16px;
   }
   .price-list::before{
     content:"";position:absolute;top:0;left:0;right:0;height:3px;
@@ -94,11 +99,21 @@
     display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;
     gap:2px 10px;
     padding:14px 4px;border-bottom:1px solid rgba(58,63,68,.055);
-    break-inside:avoid;
   }
+  /* Second column — a left border instead of the old column-rule (grid
+     has no column-rule equivalent), only on the cells that are actually
+     in column two. */
+  .price-row-compact:nth-child(n+6){
+    border-left:1px solid rgba(58,63,68,.06);padding-left:14px;
+  }
+  @media(min-width:480px){.price-row-compact:nth-child(n+6){padding-left:22px}}
+  @media(min-width:720px){.price-row-compact:nth-child(n+6){padding-left:38px}}
   .price-row-compact:last-child{border-bottom:0}
   .price-row-compact.last-in-col{border-bottom:0}
-  .price-row-compact:nth-child(even){background:rgba(99,121,91,.035)}
+  /* Tint applied by explicit class (not nth-child(even)) so it lines up
+     with the row directly across the divider — rows 1, 3, 5 in each
+     column, i.e. items 1/3/5 and 6/8/10. */
+  .price-row-compact.tint{background:rgba(99,121,91,.045)}
   .price-row-compact-name{
     font-weight:600;color:var(--ink);font-size:.82rem;line-height:1.3;
     flex:1 1 auto;min-width:0;
@@ -205,7 +220,7 @@
       <div class="price-list-wrap">
         <div class="price-list">
 
-          <div class="price-row-compact">
+          <div class="price-row-compact tint">
             <span class="price-row-compact-name">Adult Prophylaxis</span>
             <span class="price-row-compact-price">$125</span>
           </div>
@@ -215,7 +230,7 @@
             <span class="price-row-compact-price">$75</span>
           </div>
 
-          <div class="price-row-compact">
+          <div class="price-row-compact tint">
             <span class="price-row-compact-name">Periodontal Maintenance</span>
             <span class="price-row-compact-price">$150</span>
           </div>
@@ -225,12 +240,12 @@
             <span class="price-row-compact-price">$150<span class="price-note-sm">Per quadrant</span></span>
           </div>
 
-          <div class="price-row-compact last-in-col">
+          <div class="price-row-compact tint last-in-col">
             <span class="price-row-compact-name">Scaling in the Presence of Gingivitis</span>
             <span class="price-row-compact-price">$180</span>
           </div>
 
-          <div class="price-row-compact">
+          <div class="price-row-compact tint">
             <span class="price-row-compact-name">Fluoride Varnish Application</span>
             <span class="price-row-compact-price">$30</span>
           </div>
@@ -240,7 +255,7 @@
             <span class="price-row-compact-price">$35<span class="price-note-sm">Per tooth</span></span>
           </div>
 
-          <div class="price-row-compact">
+          <div class="price-row-compact tint">
             <span class="price-row-compact-name">Oral Hygiene Instruction</span>
             <span class="price-row-compact-price included">Included</span>
           </div>
@@ -250,7 +265,7 @@
             <span class="price-row-compact-price">$25–$75<span class="price-note-sm">By distance</span></span>
           </div>
 
-          <div class="price-row-compact">
+          <div class="price-row-compact tint">
             <span class="price-row-compact-name">Teeth Whitening — In-Office</span>
             <span class="price-row-compact-price">$350</span>
           </div>
