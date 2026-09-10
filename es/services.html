@@ -95,9 +95,18 @@
   @media(min-width:720px){
     .price-list{column-gap:48px;padding:8px 32px}
   }
+  /* Mobile — name always stacked above price, price always flush left
+     under the name. Previously the name+price sat side by side and only
+     wrapped to two lines when the name was too long to fit, so short
+     names (Adult Prophylaxis) kept their price flush against the far
+     right edge while wrapped rows had it on the left — and a row with a
+     qualifier (Per quadrant, Per tooth) was wider than the price digits,
+     so right-aligned text inside it sat further right than qualifier-
+     free rows. Stacking unconditionally and left-aligning the price
+     removes both inconsistencies; desktop switches back to a row layout
+     with a centered price column below. */
   .price-row-compact{
-    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;
-    gap:2px 10px;
+    display:flex;flex-direction:column;align-items:flex-start;gap:2px;
     padding:14px 4px;border-bottom:1px solid rgba(58,63,68,.055);
   }
   /* Second column — a left border instead of the old column-rule (grid
@@ -116,11 +125,10 @@
   .price-row-compact.tint{background:rgba(99,121,91,.045)}
   .price-row-compact-name{
     font-weight:600;color:var(--ink);font-size:.82rem;line-height:1.3;
-    flex:1 1 auto;min-width:0;
   }
   .price-row-compact-price{
     font-family:var(--font-serif);font-weight:800;color:var(--sage-dark);
-    font-size:.94rem;white-space:nowrap;text-align:right;
+    font-size:.94rem;white-space:nowrap;text-align:left;
   }
   .price-row-compact-price.included{
     font-family:var(--font-sans);font-weight:600;font-size:.72rem;color:var(--gray);
@@ -128,6 +136,7 @@
   .price-row-compact-price .price-note-sm{
     display:block;font-family:var(--font-sans);font-weight:600;
     font-size:.6rem;color:var(--gray);letter-spacing:0;margin-top:2px;
+    text-align:left;
   }
   @media(min-width:600px){
     .price-row-compact{padding:18px 4px}
@@ -141,7 +150,10 @@
      price and qualifier lines up down the column regardless of how long
      the service name next to it is. */
   @media(min-width:720px){
-    .price-row-compact{padding:20px 4px;flex-wrap:nowrap}
+    .price-row-compact{
+      flex-direction:row;justify-content:space-between;align-items:baseline;
+      flex-wrap:nowrap;gap:14px;padding:20px 4px;
+    }
     .price-row-compact-name{font-size:.98rem;text-align:left}
     .price-row-compact-price{
       flex:0 0 112px;width:112px;
