@@ -48,22 +48,30 @@ FALLBACK — 2-col/3-col card grid:
 .services-page{padding:var(--sp-6) 0 var(--sp-7)}
 @media(min-width:820px){.services-page{padding:var(--sp-7) 0}}
 
+/* Two-column layout at every width, including phones. Real CSS grid, not
+   CSS columns — columns flow each card down a column independently, so
+   with 10 short titles of differing line-count, row 1 in the left column
+   didn't line up with row 1 in the right column and the whole grid read
+   as staggered rather than a tidy pair of columns. Grid fixes that:
+   grid-auto-flow:column + a fixed 5-row template puts card 1 top-left,
+   card 2 directly across from it, and so on, in the same order CSS
+   columns used to fill (first 5 cards down the left column, next 5 down
+   the right) — assumes exactly 10 cards, same as the price list grid
+   above. align-items:start (not the grid default of stretch) means that
+   when a patient expands one card, only that card grows taller; its
+   row-mate doesn't get stretched to match, it just sits at the top of
+   the now-taller row with space below it, which is normal, expected
+   accordion behavior rather than a layout bug. Gap tightens on narrow
+   phones to leave more room for each column, then widens at the
+   breakpoints below. */
 .services-grid{
-  max-width:760px;margin:0 auto;
+  max-width:1020px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:column;
+  grid-template-rows:repeat(5,auto);align-items:start;
+  column-gap:14px;
 }
-
-/* Desktop: two-column newspaper-style layout instead of CSS grid. Grid
-   forces every row to align across columns, so a short card next to a
-   long one still leaves a gap under the short one. CSS columns flow each
-   card down a column independently (break-inside:avoid keeps a card from
-   splitting across the column break), so uneven card heights never cause
-   a layout mismatch — the second column just starts wherever the first
-   column's content happens to end. */
-@media(min-width:900px){
-  .services-grid{
-    column-count:2;column-gap:26px;max-width:1020px;
-  }
-}
+@media(min-width:480px){.services-grid{column-gap:20px}}
+@media(min-width:640px){.services-grid{column-gap:26px}}
 
 .svc-card{
   background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFD 100%);
@@ -79,12 +87,35 @@ FALLBACK — 2-col/3-col card grid:
 }
 @media(min-width:640px){.svc-card{margin-bottom:22px}}
 .svc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-top-color:var(--lavender-deep)}
-.svc-card h2{font-size:1.1rem;margin-bottom:8px;color:var(--ink)}
+.svc-card h2{font-size:1.1rem;margin-bottom:0;color:var(--ink)}
 .svc-card p{color:var(--gray);font-size:.92rem;margin:0}
 .svc-card p + p{margin-top:10px}
 .svc-card ul{margin:10px 0;padding-left:20px}
 .svc-card ul li{color:var(--gray);font-size:.92rem;margin-bottom:5px}
 .svc-card .text-link{display:inline-block;margin-top:8px;font-size:.88rem}
+
+/* Click-to-expand cards — each card is a native <details>, so the title
+   (wrapped in an <h2> for heading semantics/SEO) is the only thing shown
+   until a patient taps it; the photo, full description, and price line
+   sit in .svc-card-body and only render once expanded. No JS: the browser
+   handles toggling, same pattern as the FAQ accordion on the Book page. */
+.svc-card summary{
+  cursor:pointer;list-style:none;
+  display:flex;align-items:center;gap:10px;
+}
+.svc-card summary::-webkit-details-marker{display:none}
+/* Custom chevron instead of the native marker, so it matches across
+   browsers and can rotate on open. */
+.svc-card summary::after{
+  content:"";flex-shrink:0;margin-left:auto;
+  width:9px;height:9px;
+  border-right:2px solid var(--sage-dark);border-bottom:2px solid var(--sage-dark);
+  transform:rotate(45deg);
+  transition:transform .2s ease;
+}
+.svc-card[open] summary::after{transform:rotate(-135deg)}
+.svc-card-body{margin-top:14px}
+.svc-card[open]{box-shadow:var(--shadow)}
 
 /* FALLBACK — icons were added to 4 of the 12 cards (matching the icon set
    used on the home page preview), then pulled since a 4-of-12 partial
@@ -98,16 +129,16 @@ FALLBACK — 2-col/3-col card grid:
 */
 
 /* Real photos (not icons) on the Cleaning, Whitening, and Assessments
-   cards, added when Gloria supplied service photos. Negative margin pulls
-   the photo out to the card's padding edge so it bleeds full-width at the
-   top, while staying inside the border-top accent line (border sits
-   outside the padding box, so it isn't covered). Only rounds the top
-   corners so the photo reads as part of the card, not a separate block.
-   overflow:hidden on the card keeps the bled image from spilling past the
-   card's own rounded corners. Height raised from an earlier 170px pass,
-   which was cropping so tightly (the source photos are portrait/near-square,
-   not wide banners) that the actual subject was getting cut out of frame
-   for some of them. */
+   cards, added when Gloria supplied service photos. Now that each card is
+   a click-to-expand <details>, the photo sits inside .svc-card-body below
+   the title instead of bleeding off the card's top edge, so only the
+   negative left/right margin (full-bleed to the card's rounded side
+   edges) remains — the old negative top margin is gone since the photo no
+   longer needs to reach past the summary. overflow:hidden on the card
+   keeps the bled image from spilling past the card's own rounded corners.
+   Height raised from an earlier 170px pass, which was cropping so tightly
+   (the source photos are portrait/near-square, not wide banners) that the
+   actual subject was getting cut out of frame for some of them. */
 .svc-card{overflow:hidden}
 /* Wrapper + width/height:100% on the img instead of negative-margin bleed
    directly on the <img>. The calc(100% + Npx) approach was fragile inside
@@ -118,14 +149,14 @@ FALLBACK — 2-col/3-col card grid:
    fills 100% of the wrapper in both dimensions. */
 .svc-card .svc-photo-wrap{
   height:240px;overflow:hidden;
-  margin:-10px -24px 16px;
-  border-radius:calc(var(--radius-lg) - 4px) calc(var(--radius-lg) - 4px) 0 0;
+  margin:0 -24px 16px;
+  border-radius:var(--radius);
 }
 .svc-card .svc-photo-wrap .svc-photo{
   display:block;width:100%;height:100%;object-fit:cover;
 }
 @media(max-width:639px){
-  .svc-card .svc-photo-wrap{height:190px;margin:-6px -14px 14px}
+  .svc-card .svc-photo-wrap{height:190px;margin:0 -14px 14px}
 }
 
 /* Per-photo crop focus: object-fit:cover centers by default, which cut off
@@ -142,7 +173,7 @@ FALLBACK — 2-col/3-col card grid:
    same tightening pattern used on the home page's svc-card/why-item cards */
 @media(max-width:639px){
   .svc-card{padding:16px 14px}
-  .svc-card h2{font-size:.96rem;margin-bottom:5px;line-height:1.25}
+  .svc-card h2{font-size:.96rem;margin-bottom:0;line-height:1.25}
   .svc-card p{font-size:.82rem}
   .svc-card ul li{font-size:.82rem}
 }
